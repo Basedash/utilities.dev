@@ -1,0 +1,16 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+This project is called utilities.dev. It is a collection of small utilities built for developers to solve everyday problems like encoding strings or formatting code.
+
+Each utility has its own page on a website that is completely dedicated to that one utility. There's also a homepage which has search functionality to find any utility on the website.
+
+The project uses React with Next.js, Tailwind for styling, and shadcn/ui for components. If there's a shadcn component you want to use that is not yet in the project, you can install it like this:
+
+`pnpm dlx shadcn@latest add button`
+
+The project uses pnpm. Do not use plain npm commands.
+
+You don't need to run `pnpm dev` after making changes. The user will be running the app locally for testing.
