@@ -19,6 +19,7 @@ import {
   Key,
   Palette,
   Clock,
+  Timer,
 } from "lucide-react";
 
 interface Utility {
@@ -97,6 +98,16 @@ const utilities: Utility[] = [
     path: "/cron-parser",
     icon: Clock,
     tags: ["cron", "schedule", "parser", "time", "automation", "unix"],
+    category: "Development",
+  },
+  {
+    id: "unix-timestamp",
+    title: "Unix Timestamp Converter",
+    description:
+      "Convert Unix timestamps to human-readable dates and vice versa. Support for seconds and milliseconds.",
+    path: "/unix-timestamp",
+    icon: Timer,
+    tags: ["unix", "timestamp", "epoch", "date", "time", "converter", "posix"],
     category: "Development",
   },
 ];
