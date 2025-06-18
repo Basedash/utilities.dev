@@ -844,29 +844,45 @@ export default function CronParserPage() {
         {/* Information Section */}
         <Card className="mt-6">
           <CardHeader>
-            <CardTitle>Cron Expression Syntax</CardTitle>
+            <CardTitle>About Cron Parser</CardTitle>
           </CardHeader>
           <CardContent className="text-sm text-muted-foreground">
-            <div className="grid gap-6 md:grid-cols-2">
+            <p className="mb-4">
+              Cron expressions are used to schedule tasks and jobs in Unix-like
+              operating systems. This parser helps you understand complex cron
+              expressions by breaking them down into human-readable descriptions
+              and showing when they will execute next.
+            </p>
+            <div className="grid gap-6 md:grid-cols-3">
               <div>
                 <h4 className="font-semibold text-foreground mb-2">
-                  Field Order:
+                  Features:
                 </h4>
-                <div className="space-y-1 text-xs font-mono bg-muted p-3 rounded">
-                  <div>* * * * *</div>
-                  <div>│ │ │ │ │</div>
-                  <div>│ │ │ │ └─── day of week (0-7, 0=Sunday)</div>
-                  <div>│ │ │ └───── month (1-12)</div>
-                  <div>│ │ └─────── day of month (1-31)</div>
-                  <div>│ └───────── hour (0-23)</div>
-                  <div>└─────────── minute (0-59)</div>
-                </div>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>Real-time cron parsing</li>
+                  <li>Human-readable descriptions</li>
+                  <li>Next execution predictions</li>
+                  <li>Field breakdown analysis</li>
+                  <li>Quick example templates</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">
+                  Use Cases:
+                </h4>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>System task scheduling</li>
+                  <li>Automated backups</li>
+                  <li>Log rotation jobs</li>
+                  <li>CI/CD pipeline triggers</li>
+                  <li>Maintenance scripts</li>
+                </ul>
               </div>
               <div>
                 <h4 className="font-semibold text-foreground mb-2">
                   Special Characters:
                 </h4>
-                <ul className="space-y-1 text-xs">
+                <ul className="list-disc list-inside space-y-1">
                   <li>
                     <strong>*</strong> - Any value
                   </li>
@@ -882,11 +898,26 @@ export default function CronParserPage() {
                   <li>
                     <strong>MON-SUN</strong> - Day names
                   </li>
-                  <li>
-                    <strong>JAN-DEC</strong> - Month names
-                  </li>
                 </ul>
               </div>
+            </div>
+            <div className="mt-6 p-4 bg-muted rounded-lg">
+              <h4 className="font-semibold text-foreground mb-2">
+                Cron Expression Format:
+              </h4>
+              <div className="space-y-1 text-xs font-mono">
+                <div>* * * * *</div>
+                <div>│ │ │ │ │</div>
+                <div>│ │ │ │ └─── day of week (0-7, 0=Sunday)</div>
+                <div>│ │ │ └───── month (1-12)</div>
+                <div>│ │ └─────── day of month (1-31)</div>
+                <div>│ └───────── hour (0-23)</div>
+                <div>└─────────── minute (0-59)</div>
+              </div>
+              <p className="text-xs mt-2">
+                Some systems also support a 6th field for seconds at the
+                beginning.
+              </p>
             </div>
           </CardContent>
         </Card>

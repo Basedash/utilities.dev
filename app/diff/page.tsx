@@ -388,6 +388,61 @@ export default function DiffPage() {
             </CardContent>
           </Card>
         )}
+
+        {/* Information Section */}
+        <Card className="mt-6">
+          <CardHeader>
+            <CardTitle>About Text Diff Tool</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm text-muted-foreground">
+            <p className="mb-4">
+              A diff tool compares two blocks of text and highlights the
+              differences between them. This is essential for code reviews,
+              document comparison, and tracking changes in any textual content.
+            </p>
+            <div className="grid gap-4 md:grid-cols-3">
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">
+                  Features:
+                </h4>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>Line-by-line comparison</li>
+                  <li>Addition/deletion highlighting</li>
+                  <li>Ignore whitespace option</li>
+                  <li>Case-insensitive comparison</li>
+                  <li>Copy diff results</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">
+                  Use Cases:
+                </h4>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>Code review and comparison</li>
+                  <li>Document version control</li>
+                  <li>Configuration file changes</li>
+                  <li>Content editing workflow</li>
+                  <li>Data validation</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">
+                  Color Legend:
+                </h4>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>
+                    <span className="text-green-600">Green:</span> Added lines
+                  </li>
+                  <li>
+                    <span className="text-red-600">Red:</span> Removed lines
+                  </li>
+                  <li>Unchanged lines remain normal</li>
+                  <li>Statistics show total changes</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
