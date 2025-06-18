@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Github } from "lucide-react";
+import { ModeToggle } from "../mode-toggle";
+import { Button } from "./button";
 
 export function Header() {
   return (
@@ -12,15 +14,19 @@ export function Header() {
           utilities.dev
         </Link>
 
-        <Link
-          href="https://github.com/Basedash/utilities.dev"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-muted-foreground hover:text-foreground transition-colors"
-          aria-label="View source on GitHub"
-        >
-          <Github className="h-5 w-5" />
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            href="https://github.com/Basedash/utilities.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View source on GitHub"
+          >
+            <Button variant="ghost" size="icon">
+              <Github className="h-[1.2rem] w-[1.2rem]" />
+            </Button>
+          </Link>
+          <ModeToggle />
+        </div>
       </div>
     </header>
   );
