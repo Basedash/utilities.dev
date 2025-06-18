@@ -33,7 +33,7 @@ A collection of essential developer tools for everyday coding tasks. Simple, fas
 ### Installation
 
 ```bash
-git clone <repository-url>
+git clone git@github.com:Basedash/utilities.dev.git
 cd utilities.dev
 pnpm install
 ```
