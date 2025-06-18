@@ -14,3 +14,7 @@ The project uses React with Next.js, Tailwind for styling, and shadcn/ui for com
 The project uses pnpm. Do not use plain npm commands.
 
 You don't need to run `pnpm dev` after making changes. The user will be running the app locally for testing.
+
+You should run `pnpm lint` after making changes and fix any outstanding issues.
+
+When adding a new utility, you'll need to create a new route and also add the utility to the home page.

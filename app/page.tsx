@@ -11,7 +11,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search, Code, FileText, TestTube } from "lucide-react";
+import {
+  Search,
+  Code,
+  FileText,
+  TestTube,
+  Key,
+  Palette,
+  Clock,
+} from "lucide-react";
 
 interface Utility {
   id: string;
@@ -60,6 +68,36 @@ const utilities: Utility[] = [
       "validation",
     ],
     category: "Testing",
+  },
+  {
+    id: "jwt-decoder",
+    title: "JWT Decoder",
+    description:
+      "Decode and inspect JWT tokens with detailed header, payload, and signature information.",
+    path: "/jwt-decoder",
+    icon: Key,
+    tags: ["jwt", "token", "decode", "authentication", "security", "json"],
+    category: "Security",
+  },
+  {
+    id: "color-converter",
+    title: "Color Converter",
+    description:
+      "Convert colors between different formats including HEX, RGB, HSL, HSV, and more with live preview.",
+    path: "/color-converter",
+    icon: Palette,
+    tags: ["color", "hex", "rgb", "hsl", "hsv", "convert", "picker", "design"],
+    category: "Design",
+  },
+  {
+    id: "cron-parser",
+    title: "Cron Expression Parser",
+    description:
+      "Parse and understand cron expressions with human-readable descriptions and upcoming execution times.",
+    path: "/cron-parser",
+    icon: Clock,
+    tags: ["cron", "schedule", "parser", "time", "automation", "unix"],
+    category: "Development",
   },
 ];
 
