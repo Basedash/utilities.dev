@@ -21,6 +21,7 @@ import {
   Clock,
   Timer,
   GitCompare,
+  FileImage,
 } from "lucide-react";
 
 interface Utility {
@@ -120,6 +121,25 @@ const utilities: Utility[] = [
     icon: GitCompare,
     tags: ["diff", "compare", "text", "changes", "review", "git", "patch"],
     category: "Development",
+  },
+  {
+    id: "svg-viewer",
+    title: "SVG Viewer",
+    description:
+      "View, format, validate, and analyze SVG files with real-time preview. Sanitize SVGs and extract metadata.",
+    path: "/svg-viewer",
+    icon: FileImage,
+    tags: [
+      "svg",
+      "vector",
+      "graphics",
+      "viewer",
+      "format",
+      "validate",
+      "sanitize",
+      "xml",
+    ],
+    category: "Design",
   },
 ];
 
