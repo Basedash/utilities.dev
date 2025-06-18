@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# utilities.dev
 
-## Getting Started
+A collection of essential developer tools for everyday coding tasks. Simple, fast, and free online utilities made by the team at [Basedash](https://www.basedash.com?ref=utilities.dev).
 
-First, run the development server:
+## 🛠️ Example Utilities
+
+### Base64 Encoding
+- Encode and decode text using Base64 encoding
+- Perfect for handling binary data in text format
+- Copy results to clipboard
+- Real-time conversion
+- **Access**: `/base64-encoding`
+
+### JSON Formatter
+- Format, prettify, and validate JSON data
+- Minify JSON for production use
+- Syntax error detection with detailed messages
+- Size and statistics display
+- **Access**: `/json-formatter`
+
+### Regex Tester
+- Test regular expressions with real-time matching
+- Support for all regex flags (global, case-insensitive, multiline, etc.)
+- Match highlighting and detailed results
+- Capture group analysis
+- **Access**: `/regex-tester`
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ and pnpm
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd utilities.dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-## Learn More
+### Build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm build
+pnpm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏗️ Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Framework**: Next.js 15 with App Router
+- **Styling**: Tailwind CSS
+- **Components**: shadcn/ui
+- **Icons**: Lucide React
+- **TypeScript**: Full type safety
+- **Package Manager**: pnpm
 
-## Deploy on Vercel
+## 📱 Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Search**: Find utilities quickly with real-time search
+- **Responsive**: Works perfectly on desktop, tablet, and mobile
+- **Dark Mode**: Automatic theme switching
+- **Accessibility**: Screen reader friendly with proper ARIA labels
+- **Performance**: Optimized for speed and lighthouse scores
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+- Add new utilities
+- Improve existing tools
+- Fix bugs
+- Enhance documentation
