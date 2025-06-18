@@ -146,28 +146,26 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 py-6">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold tracking-tight mb-2">
-              utilities.dev
-            </h1>
-            <p className="text-xl text-muted-foreground mb-6">
-              Essential developer tools for everyday coding tasks
-            </p>
+      {/* Hero Section */}
+      <div className="container mx-auto px-4 py-12">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold tracking-tight mb-2">
+            Essential developer tools for everyday coding tasks
+          </h1>
+          <p className="text-xl text-muted-foreground mb-6">
+            Simple, fast, and free online utilities
+          </p>
 
-            {/* Search Bar */}
-            <div className="relative max-w-md mx-auto">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-              <Input
-                type="text"
-                placeholder="Search utilities..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-12 text-base"
-              />
-            </div>
+          {/* Search Bar */}
+          <div className="relative max-w-md mx-auto">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Input
+              type="text"
+              placeholder="Search utilities..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 h-12 text-base"
+            />
           </div>
         </div>
       </div>
@@ -244,26 +242,6 @@ export default function HomePage() {
           </>
         )}
       </div>
-
-      {/* Footer */}
-      <footer className="border-t mt-16">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center text-sm text-muted-foreground">
-            <p>utilities.dev - A collection of essential developer tools</p>
-            <p className="mt-2">
-              Made by the team at{" "}
-              <a
-                href="https://www.basedash.com?ref=utilities.dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary"
-              >
-                Basedash
-              </a>
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
