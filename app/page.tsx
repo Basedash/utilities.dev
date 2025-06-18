@@ -22,6 +22,7 @@ import {
   Timer,
   GitCompare,
   FileImage,
+  Eye,
 } from "lucide-react";
 
 interface Utility {
@@ -140,6 +141,26 @@ const utilities: Utility[] = [
       "xml",
     ],
     category: "Design",
+  },
+  {
+    id: "markdown-viewer",
+    title: "Markdown Viewer",
+    description:
+      "Preview, format, and analyze Markdown files with real-time HTML output. Extract metadata, calculate reading time, and validate syntax.",
+    path: "/markdown-viewer",
+    icon: Eye,
+    tags: [
+      "markdown",
+      "md",
+      "preview",
+      "html",
+      "viewer",
+      "format",
+      "analyze",
+      "documentation",
+      "readme",
+    ],
+    category: "Formatting",
   },
 ];
 
