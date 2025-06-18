@@ -20,6 +20,7 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
+import { formatJson, minifyJson, validateJson, formatBytes } from "./utils";
 
 export default function JsonFormatterPage() {
   const [inputJson, setInputJson] = useState("");
@@ -28,45 +29,33 @@ export default function JsonFormatterPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const [stats, setStats] = useState({ size: 0, lines: 0, characters: 0 });
 
-  const validateAndFormat = (jsonString: string, shouldMinify = false) => {
-    if (!jsonString.trim()) {
-      setOutputJson("");
-      setIsValid(null);
-      setErrorMessage("");
-      setStats({ size: 0, lines: 0, characters: 0 });
-      return;
-    }
-
-    try {
-      const parsed = JSON.parse(jsonString);
-      const formatted = shouldMinify
-        ? JSON.stringify(parsed)
-        : JSON.stringify(parsed, null, 2);
-
-      setOutputJson(formatted);
+  const updateResults = (result: {
+    success: boolean;
+    result: string;
+    error?: string;
+    stats?: { size: number; lines: number; characters: number };
+  }) => {
+    if (result.success) {
+      setOutputJson(result.result);
       setIsValid(true);
       setErrorMessage("");
-
-      // Calculate stats
-      const lines = formatted.split("\n").length;
-      const characters = formatted.length;
-      const size = new Blob([formatted]).size;
-
-      setStats({ size, lines, characters });
-    } catch (error) {
+      setStats(result.stats || { size: 0, lines: 0, characters: 0 });
+    } else {
       setIsValid(false);
       setOutputJson("");
-      setErrorMessage(error instanceof Error ? error.message : "Invalid JSON");
+      setErrorMessage(result.error || "Invalid JSON");
       setStats({ size: 0, lines: 0, characters: 0 });
     }
   };
 
   const handleFormat = () => {
-    validateAndFormat(inputJson, false);
+    const result = formatJson(inputJson);
+    updateResults(result);
   };
 
   const handleMinify = () => {
-    validateAndFormat(inputJson, true);
+    const result = minifyJson(inputJson);
+    updateResults(result);
   };
 
   const handleValidate = () => {
@@ -76,13 +65,12 @@ export default function JsonFormatterPage() {
       return;
     }
 
-    try {
-      JSON.parse(inputJson);
-      setIsValid(true);
+    const validation = validateJson(inputJson);
+    setIsValid(validation.isValid);
+    if (!validation.isValid) {
+      setErrorMessage(validation.error || "Invalid JSON");
+    } else {
       setErrorMessage("");
-    } catch (error) {
-      setIsValid(false);
-      setErrorMessage(error instanceof Error ? error.message : "Invalid JSON");
     }
   };
 
@@ -106,14 +94,6 @@ export default function JsonFormatterPage() {
     setIsValid(null);
     setErrorMessage("");
     setStats({ size: 0, lines: 0, characters: 0 });
-  };
-
-  const formatBytes = (bytes: number) => {
-    if (bytes === 0) return "0 B";
-    const k = 1024;
-    const sizes = ["B", "KB", "MB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
   };
 
   return (

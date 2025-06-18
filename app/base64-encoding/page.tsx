@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { ArrowUpDown, Copy, Trash2 } from "lucide-react";
+import { encodeBase64, decodeBase64 } from "./utils";
 
 export default function Base64EncodingPage() {
   const [inputText, setInputText] = useState("");
@@ -19,22 +20,22 @@ export default function Base64EncodingPage() {
   const [isEncoded, setIsEncoded] = useState(false);
 
   const handleEncode = () => {
-    try {
-      const encoded = btoa(inputText);
-      setOutputText(encoded);
+    const result = encodeBase64(inputText);
+    if (result.success) {
+      setOutputText(result.result);
       setIsEncoded(true);
-    } catch {
-      setOutputText("Error: Unable to encode text");
+    } else {
+      setOutputText(`Error: ${result.error}`);
     }
   };
 
   const handleDecode = () => {
-    try {
-      const decoded = atob(inputText);
-      setOutputText(decoded);
+    const result = decodeBase64(inputText);
+    if (result.success) {
+      setOutputText(result.result);
       setIsEncoded(false);
-    } catch {
-      setOutputText("Error: Invalid base64 string");
+    } else {
+      setOutputText(`Error: ${result.error}`);
     }
   };
 

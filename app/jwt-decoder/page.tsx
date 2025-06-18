@@ -21,32 +21,13 @@ import {
   Clock,
   Calendar,
 } from "lucide-react";
-
-interface JWTHeader {
-  alg?: string;
-  typ?: string;
-  kid?: string;
-  [key: string]: unknown;
-}
-
-interface JWTPayload {
-  iss?: string;
-  sub?: string;
-  aud?: string | string[];
-  exp?: number;
-  nbf?: number;
-  iat?: number;
-  jti?: string;
-  [key: string]: unknown;
-}
-
-interface DecodedJWT {
-  header: JWTHeader;
-  payload: JWTPayload;
-  signature: string;
-  headerBase64: string;
-  payloadBase64: string;
-}
+import {
+  decodeJWT,
+  getExpirationStatus,
+  formatTimestamp,
+  isJWTExpired,
+  type DecodedJWT,
+} from "./utils";
 
 export default function JwtDecoderPage() {
   const [inputToken, setInputToken] = useState("");
@@ -54,56 +35,24 @@ export default function JwtDecoderPage() {
   const [isValid, setIsValid] = useState<boolean | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const decodeJWT = (token: string) => {
-    if (!token.trim()) {
+  useEffect(() => {
+    if (!inputToken.trim()) {
       setDecodedJWT(null);
       setIsValid(null);
       setErrorMessage("");
       return;
     }
 
-    try {
-      const parts = token.split(".");
-      if (parts.length !== 3) {
-        throw new Error(
-          "Invalid JWT format. JWT should have 3 parts separated by dots."
-        );
-      }
-
-      const [headerBase64, payloadBase64, signature] = parts;
-
-      // Decode header
-      const headerJson = atob(
-        headerBase64.replace(/-/g, "+").replace(/_/g, "/")
-      );
-      const header = JSON.parse(headerJson);
-
-      // Decode payload
-      const payloadJson = atob(
-        payloadBase64.replace(/-/g, "+").replace(/_/g, "/")
-      );
-      const payload = JSON.parse(payloadJson);
-
-      setDecodedJWT({
-        header,
-        payload,
-        signature,
-        headerBase64,
-        payloadBase64,
-      });
+    const result = decodeJWT(inputToken);
+    if (result.success && result.data) {
+      setDecodedJWT(result.data);
       setIsValid(true);
       setErrorMessage("");
-    } catch (error) {
+    } else {
       setIsValid(false);
       setDecodedJWT(null);
-      setErrorMessage(
-        error instanceof Error ? error.message : "Invalid JWT token"
-      );
+      setErrorMessage(result.error || "Invalid JWT token");
     }
-  };
-
-  useEffect(() => {
-    decodeJWT(inputToken);
   }, [inputToken]);
 
   const handleCopy = async (text: string) => {
@@ -125,36 +74,6 @@ export default function JwtDecoderPage() {
     setDecodedJWT(null);
     setIsValid(null);
     setErrorMessage("");
-  };
-
-  const formatTimestamp = (timestamp: number) => {
-    if (!timestamp) return "N/A";
-    const date = new Date(timestamp * 1000);
-    return date.toLocaleString();
-  };
-
-  const isExpired = (exp: number) => {
-    if (!exp) return false;
-    return Date.now() / 1000 > exp;
-  };
-
-  const getExpirationStatus = (exp: number) => {
-    if (!exp) return null;
-    const isExp = isExpired(exp);
-    const timeLeft = exp - Date.now() / 1000;
-
-    if (isExp) {
-      return { status: "expired", message: "Token has expired", color: "red" };
-    } else if (timeLeft < 3600) {
-      // Less than 1 hour
-      return {
-        status: "expiring",
-        message: "Token expires soon",
-        color: "yellow",
-      };
-    } else {
-      return { status: "valid", message: "Token is valid", color: "green" };
-    }
   };
 
   return (
@@ -366,7 +285,7 @@ export default function JwtDecoderPage() {
                             <span className="font-medium">Expires At:</span>
                             <span
                               className={
-                                isExpired(decodedJWT.payload.exp)
+                                isJWTExpired(inputToken)
                                   ? "text-red-600 dark:text-red-400"
                                   : ""
                               }

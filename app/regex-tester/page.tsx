@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -22,18 +22,18 @@ import {
   Search,
   Info,
 } from "lucide-react";
-
-interface RegexMatch {
-  match: string;
-  index: number;
-  groups: string[];
-  namedGroups?: { [key: string]: string };
-}
+import {
+  testRegex,
+  buildFlagString,
+  getCommonPatterns,
+  type RegexFlags,
+  type RegexMatch,
+} from "./utils";
 
 export default function RegexTesterPage() {
   const [pattern, setPattern] = useState("");
   const [testString, setTestString] = useState("");
-  const [flags, setFlags] = useState({
+  const [flags, setFlags] = useState<RegexFlags>({
     global: true,
     ignoreCase: false,
     multiline: false,
@@ -41,77 +41,17 @@ export default function RegexTesterPage() {
     unicode: false,
     dotAll: false,
   });
-  const [matches, setMatches] = useState<RegexMatch[]>([]);
-  const [isValidRegex, setIsValidRegex] = useState<boolean | null>(null);
-  const [regexError, setRegexError] = useState("");
 
-  const flagString = useMemo(() => {
-    let flagStr = "";
-    if (flags.global) flagStr += "g";
-    if (flags.ignoreCase) flagStr += "i";
-    if (flags.multiline) flagStr += "m";
-    if (flags.sticky) flagStr += "y";
-    if (flags.unicode) flagStr += "u";
-    if (flags.dotAll) flagStr += "s";
-    return flagStr;
-  }, [flags]);
-
-  useEffect(() => {
+  const testResult = useMemo(() => {
     if (!pattern.trim()) {
-      setMatches([]);
-      setIsValidRegex(null);
-      setRegexError("");
-      return;
+      return {
+        isValid: false,
+        matches: [],
+        matchCount: 0,
+      };
     }
-
-    try {
-      const regex = new RegExp(pattern, flagString);
-      setIsValidRegex(true);
-      setRegexError("");
-
-      if (!testString) {
-        setMatches([]);
-        return;
-      }
-
-      const foundMatches: RegexMatch[] = [];
-
-      if (flags.global) {
-        let match;
-        while ((match = regex.exec(testString)) !== null) {
-          foundMatches.push({
-            match: match[0],
-            index: match.index,
-            groups: match.slice(1),
-            namedGroups: match.groups,
-          });
-
-          // Prevent infinite loop for zero-length matches
-          if (match.index === regex.lastIndex) {
-            regex.lastIndex++;
-          }
-        }
-      } else {
-        const match = regex.exec(testString);
-        if (match) {
-          foundMatches.push({
-            match: match[0],
-            index: match.index,
-            groups: match.slice(1),
-            namedGroups: match.groups,
-          });
-        }
-      }
-
-      setMatches(foundMatches);
-    } catch (error) {
-      setIsValidRegex(false);
-      setRegexError(
-        error instanceof Error ? error.message : "Invalid regex pattern"
-      );
-      setMatches([]);
-    }
-  }, [pattern, testString, flagString, flags.global]);
+    return testRegex(pattern, testString, flags);
+  }, [pattern, testString, flags]);
 
   const highlightMatches = (text: string, matches: RegexMatch[]) => {
     if (matches.length === 0) return text;
@@ -170,14 +110,13 @@ export default function RegexTesterPage() {
   const handleClear = () => {
     setPattern("");
     setTestString("");
-    setMatches([]);
-    setIsValidRegex(null);
-    setRegexError("");
   };
 
-  const handleFlagChange = (flag: keyof typeof flags) => {
+  const handleFlagChange = (flag: keyof RegexFlags) => {
     setFlags((prev) => ({ ...prev, [flag]: !prev[flag] }));
   };
+
+  const commonPatterns = getCommonPatterns();
 
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
@@ -209,7 +148,9 @@ export default function RegexTesterPage() {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => handleCopy(`/${pattern}/${flagString}`)}
+                  onClick={() =>
+                    handleCopy(`/${pattern}/${buildFlagString(flags)}`)
+                  }
                   disabled={!pattern}
                   className="h-8 px-2"
                 >
@@ -236,7 +177,7 @@ export default function RegexTesterPage() {
                   className="font-mono"
                 />
                 <span className="text-lg font-mono text-muted-foreground">
-                  /{flagString}
+                  /{buildFlagString(flags)}
                 </span>
               </div>
             </div>
@@ -312,22 +253,23 @@ export default function RegexTesterPage() {
             </div>
 
             {/* Regex Validation Status */}
-            {isValidRegex !== null && (
+            {testResult.isValid !== null && (
               <div
                 className={`flex items-center gap-2 p-3 rounded-md ${
-                  isValidRegex
+                  testResult.isValid
                     ? "bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800"
                     : "bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800"
                 }`}
               >
-                {isValidRegex ? (
+                {testResult.isValid ? (
                   <>
                     <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
                     <span className="text-sm font-medium text-green-800 dark:text-green-200">
                       Valid regex pattern
                     </span>
                     <Badge variant="secondary" className="ml-auto">
-                      {matches.length} match{matches.length !== 1 ? "es" : ""}
+                      {testResult.matchCount} match
+                      {testResult.matchCount !== 1 ? "es" : ""}
                     </Badge>
                   </>
                 ) : (
@@ -337,7 +279,7 @@ export default function RegexTesterPage() {
                       Invalid regex:
                     </span>
                     <span className="text-sm text-red-700 dark:text-red-300">
-                      {regexError}
+                      {testResult.error}
                     </span>
                   </>
                 )}
@@ -394,7 +336,7 @@ export default function RegexTesterPage() {
                   <Label>Highlighted Matches</Label>
                   <div className="min-h-[200px] p-3 border rounded-md bg-muted font-mono text-sm whitespace-pre-wrap">
                     {testString ? (
-                      highlightMatches(testString, matches)
+                      highlightMatches(testString, testResult.matches)
                     ) : (
                       <span className="text-muted-foreground">
                         Test string will appear here with matches highlighted...
@@ -408,13 +350,13 @@ export default function RegexTesterPage() {
         </div>
 
         {/* Match Details */}
-        {matches.length > 0 && (
+        {testResult.matches.length > 0 && (
           <Card className="mt-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Search className="h-5 w-5" />
-                Match Details ({matches.length} match
-                {matches.length !== 1 ? "es" : ""})
+                Match Details ({testResult.matches.length} match
+                {testResult.matches.length !== 1 ? "es" : ""})
               </CardTitle>
               <CardDescription>
                 Detailed information about each match and capture groups
@@ -422,7 +364,7 @@ export default function RegexTesterPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {matches.map((match, index) => (
+                {testResult.matches.map((match, index) => (
                   <div key={index} className="border rounded-lg p-4 space-y-2">
                     <div className="flex items-center justify-between">
                       <Badge variant="outline">Match {index + 1}</Badge>
@@ -512,10 +454,11 @@ export default function RegexTesterPage() {
                   Common Patterns:
                 </h4>
                 <ul className="list-disc list-inside space-y-1 font-mono text-xs">
-                  <li>\d+ - Numbers</li>
-                  <li>\w+ - Words</li>
-                  <li>^.+$ - Full string</li>
-                  <li>[a-zA-Z]+ - Letters only</li>
+                  {Object.entries(commonPatterns).map(([key, pattern]) => (
+                    <li key={key}>
+                      <code>{pattern.pattern}</code> - {pattern.description}
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div>

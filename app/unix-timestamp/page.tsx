@@ -13,6 +13,12 @@ import {
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Copy, RefreshCw, Calendar } from "lucide-react";
+import {
+  timestampToDate,
+  dateToTimestamp,
+  getCurrentTimestamp,
+  getCurrentDateTime,
+} from "./utils";
 
 export default function UnixTimestampPage() {
   const [timestamp, setTimestamp] = useState("");
@@ -23,10 +29,8 @@ export default function UnixTimestampPage() {
   // Update current timestamp every second
   useEffect(() => {
     const updateCurrentTimestamp = () => {
-      const now = Date.now();
-      setCurrentTimestamp(
-        isMilliseconds ? now.toString() : Math.floor(now / 1000).toString()
-      );
+      const current = getCurrentTimestamp(isMilliseconds);
+      setCurrentTimestamp(current);
     };
 
     updateCurrentTimestamp();
@@ -34,37 +38,11 @@ export default function UnixTimestampPage() {
     return () => clearInterval(interval);
   }, [isMilliseconds]);
 
-  const convertTimestampToDate = (ts: string) => {
-    try {
-      const numTs = parseInt(ts);
-      if (isNaN(numTs)) return "Invalid timestamp";
-
-      const date = new Date(isMilliseconds ? numTs : numTs * 1000);
-      if (isNaN(date.getTime())) return "Invalid timestamp";
-
-      return date.toISOString().slice(0, 19).replace("T", " ");
-    } catch {
-      return "Invalid timestamp";
-    }
-  };
-
-  const convertDateToTimestamp = (dateStr: string) => {
-    try {
-      const date = new Date(dateStr);
-      if (isNaN(date.getTime())) return "Invalid date";
-
-      const ts = date.getTime();
-      return isMilliseconds ? ts.toString() : Math.floor(ts / 1000).toString();
-    } catch {
-      return "Invalid date";
-    }
-  };
-
   const handleTimestampChange = (value: string) => {
     setTimestamp(value);
     if (value.trim()) {
-      const converted = convertTimestampToDate(value);
-      setDateTime(converted);
+      const result = timestampToDate(value, isMilliseconds);
+      setDateTime(result.success ? result.result : "Invalid timestamp");
     } else {
       setDateTime("");
     }
@@ -73,8 +51,8 @@ export default function UnixTimestampPage() {
   const handleDateTimeChange = (value: string) => {
     setDateTime(value);
     if (value.trim()) {
-      const converted = convertDateToTimestamp(value);
-      setTimestamp(converted);
+      const result = dateToTimestamp(value, isMilliseconds);
+      setTimestamp(result.success ? result.result : "Invalid date");
     } else {
       setTimestamp("");
     }
@@ -95,15 +73,17 @@ export default function UnixTimestampPage() {
   };
 
   const useCurrentTimestamp = () => {
-    setTimestamp(currentTimestamp);
-    setDateTime(convertTimestampToDate(currentTimestamp));
+    const current = getCurrentTimestamp(isMilliseconds);
+    setTimestamp(current);
+    const dateResult = timestampToDate(current, isMilliseconds);
+    setDateTime(dateResult.success ? dateResult.result : "");
   };
 
-  const getCurrentDateTime = () => {
-    const now = new Date();
-    const formatted = now.toISOString().slice(0, 19).replace("T", " ");
-    setDateTime(formatted);
-    setTimestamp(convertDateToTimestamp(formatted));
+  const useCurrentDateTime = () => {
+    const current = getCurrentDateTime();
+    setDateTime(current);
+    const timestampResult = dateToTimestamp(current, isMilliseconds);
+    setTimestamp(timestampResult.success ? timestampResult.result : "");
   };
 
   const clear = () => {
@@ -234,7 +214,7 @@ export default function UnixTimestampPage() {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={getCurrentDateTime}
+                    onClick={useCurrentDateTime}
                     className="h-8 px-2"
                   >
                     <Calendar className="h-4 w-4" />

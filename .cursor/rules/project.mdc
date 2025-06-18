@@ -17,4 +17,19 @@ You don't need to run `pnpm dev` after making changes. The user will be running 
 
 You should run `pnpm lint` after making changes and fix any outstanding issues.
 
-When adding a new utility, you'll need to create a new route and also add the utility to the home page.
+# Utilities
+
+Each utility is comprised of a few parts:
+1. Utils used for all the logic
+2. Unit tests for all the utils
+3. The route's layout and page
+4. A card on the home page
+
+## Page design
+
+Each utility page should have a title and subtitle describing the utility at a high level. It should use a card-based design for all of the major components. There should be an "About" section at the bottom which describes the utility, use cases, features, etc.
+
+
+
+
+
