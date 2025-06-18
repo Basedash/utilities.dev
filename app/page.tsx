@@ -20,6 +20,7 @@ import {
   Palette,
   Clock,
   Timer,
+  GitCompare,
 } from "lucide-react";
 
 interface Utility {
@@ -108,6 +109,16 @@ const utilities: Utility[] = [
     path: "/unix-timestamp",
     icon: Timer,
     tags: ["unix", "timestamp", "epoch", "date", "time", "converter", "posix"],
+    category: "Development",
+  },
+  {
+    id: "diff",
+    title: "Text Diff Tool",
+    description:
+      "Compare two text blocks and highlight differences line by line. Perfect for code reviews and document comparisons.",
+    path: "/diff",
+    icon: GitCompare,
+    tags: ["diff", "compare", "text", "changes", "review", "git", "patch"],
     category: "Development",
   },
 ];
