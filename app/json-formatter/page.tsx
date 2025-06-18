@@ -89,7 +89,7 @@ export default function JsonFormatterPage() {
   const handleCopy = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-    } catch (error) {
+    } catch {
       // Fallback for older browsers
       const textArea = document.createElement("textarea");
       textArea.value = text;
@@ -289,9 +289,9 @@ export default function JsonFormatterPage() {
           <CardContent className="text-sm text-muted-foreground">
             <p className="mb-4">
               JSON (JavaScript Object Notation) is a lightweight data
-              interchange format that's easy for humans to read and write. This
-              tool helps you format, validate, and minify JSON data for better
-              readability and debugging.
+              interchange format that&apos;s easy for humans to read and write.
+              This tool helps you format, validate, and minify JSON data for
+              better readability and debugging.
             </p>
             <div className="grid gap-4 md:grid-cols-3">
               <div>

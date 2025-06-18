@@ -157,7 +157,7 @@ export default function RegexTesterPage() {
   const handleCopy = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-    } catch (error) {
+    } catch {
       const textArea = document.createElement("textarea");
       textArea.value = text;
       document.body.appendChild(textArea);
@@ -435,7 +435,7 @@ export default function RegexTesterPage() {
                       <div>
                         <span className="font-medium">Full Match: </span>
                         <code className="bg-muted px-1 py-0.5 rounded font-mono">
-                          "{match.match}"
+                          &quot;{match.match}&quot;
                         </code>
                       </div>
                       {match.groups.length > 0 && (
@@ -448,7 +448,7 @@ export default function RegexTesterPage() {
                                 variant="secondary"
                                 className="font-mono"
                               >
-                                ${groupIndex + 1}: "{group || ""}"
+                                ${groupIndex + 1}: &quot;{group || ""}&quot;
                               </Badge>
                             ))}
                           </div>
@@ -466,7 +466,7 @@ export default function RegexTesterPage() {
                                     variant="secondary"
                                     className="font-mono"
                                   >
-                                    {name}: "{value || ""}"
+                                    {name}: &quot;{value || ""}&quot;
                                   </Badge>
                                 )
                               )}

@@ -23,7 +23,7 @@ export default function Base64EncodingPage() {
       const encoded = btoa(inputText);
       setOutputText(encoded);
       setIsEncoded(true);
-    } catch (error) {
+    } catch {
       setOutputText("Error: Unable to encode text");
     }
   };
@@ -33,7 +33,7 @@ export default function Base64EncodingPage() {
       const decoded = atob(inputText);
       setOutputText(decoded);
       setIsEncoded(false);
-    } catch (error) {
+    } catch {
       setOutputText("Error: Invalid base64 string");
     }
   };
@@ -47,7 +47,7 @@ export default function Base64EncodingPage() {
   const handleCopy = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-    } catch (error) {
+    } catch {
       // Fallback for older browsers
       const textArea = document.createElement("textarea");
       textArea.value = text;
@@ -189,9 +189,9 @@ export default function Base64EncodingPage() {
           <CardContent className="text-sm text-muted-foreground">
             <p>
               Base64 is a binary-to-text encoding scheme that represents binary
-              data in an ASCII string format. It's commonly used for encoding
-              data that needs to be stored or transmitted over media designed
-              for text data, such as email or URLs.
+              data in an ASCII string format. It&apos;s commonly used for
+              encoding data that needs to be stored or transmitted over media
+              designed for text data, such as email or URLs.
             </p>
             <div className="mt-4 grid gap-2 md:grid-cols-2">
               <div>
