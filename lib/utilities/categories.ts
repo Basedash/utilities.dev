@@ -55,6 +55,13 @@ export const UTILITY_CATEGORIES = [
     seoApplicationCategory: "DesignApplication",
     aliases: ["design", "color", "svg", "hex", "rgb", "hsl"],
   },
+  {
+    id: "accessibility",
+    label: "Accessibility",
+    description: "Evaluate and improve accessibility details for UI content and semantics.",
+    seoApplicationCategory: "DeveloperApplication",
+    aliases: ["a11y", "accessibility", "wcag", "aria", "readability", "alt text"],
+  },
 ] as const;
 
 export type UtilityCategoryMeta = (typeof UTILITY_CATEGORIES)[number];
@@ -73,6 +80,7 @@ const CATEGORY_SIMILARITY_BONUS: Partial<Record<UtilityCategoryId, UtilityCatego
   "time-scheduling": ["dev-productivity"],
   "dev-productivity": ["time-scheduling", "text-regex"],
   "color-design": [],
+  accessibility: ["color-design", "text-regex", "web-http"],
 };
 
 export function getCategoryMeta(categoryId: UtilityCategoryId): UtilityCategoryMeta {
