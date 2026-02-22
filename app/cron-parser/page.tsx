@@ -11,6 +11,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { UtilityPageHero } from "@/components/utility/utility-page-hero";
+import { UtilityPageSections } from "@/components/utility/utility-page-sections";
 import {
   Copy,
   Trash2,
@@ -19,6 +21,7 @@ import {
   AlertCircle,
   Calendar,
 } from "lucide-react";
+import manifest from "./manifest";
 import {
   parseCronExpression,
   describeCronExpression,
@@ -101,14 +104,7 @@ export default function CronParserPage() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold tracking-tight mb-2">
-            Cron Parser
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Parse and understand cron expressions with detailed explanations
-          </p>
-        </div>
+        <UtilityPageHero manifest={manifest} />
 
         {/* Validation Status */}
         {!isValid && (
@@ -301,46 +297,7 @@ export default function CronParserPage() {
           </>
         )}
 
-        {/* Information Section */}
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle>About Cron Expressions</CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">
-            <p className="mb-4">
-              Cron expressions are used to schedule tasks at specific times or
-              intervals. They consist of 5 or 6 fields separated by spaces:
-            </p>
-            <div className="grid gap-2 md:grid-cols-2">
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  5-Field Format:
-                </h4>
-                <div className="font-mono text-xs bg-muted p-2 rounded mb-2">
-                  * * * * *
-                </div>
-                <ul className="space-y-1 text-xs">
-                  <li>• Minute (0-59)</li>
-                  <li>• Hour (0-23)</li>
-                  <li>• Day of month (1-31)</li>
-                  <li>• Month (1-12)</li>
-                  <li>• Day of week (0-7, 0 and 7 = Sunday)</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Special Characters:
-                </h4>
-                <ul className="space-y-1 text-xs">
-                  <li>• * : Any value</li>
-                  <li>• , : Value list separator</li>
-                  <li>• - : Range of values</li>
-                  <li>• / : Step values</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <UtilityPageSections manifest={manifest} />
       </div>
     </div>
   );

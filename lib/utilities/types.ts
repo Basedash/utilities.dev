@@ -6,6 +6,20 @@ export interface UtilitySeoConfig {
   keywords?: string[];
 }
 
+export interface UtilityFaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface UtilityPageContent {
+  intro: string;
+  trustNote: string;
+  howToSteps: string[];
+  about: string;
+  useCases: string[];
+  faqs: UtilityFaqItem[];
+}
+
 export interface UtilityManifest {
   id: string;
   slug: string;
@@ -15,4 +29,5 @@ export interface UtilityManifest {
   tags: string[];
   icon: LucideIcon;
   seo?: UtilitySeoConfig;
+  content: UtilityPageContent;
 }

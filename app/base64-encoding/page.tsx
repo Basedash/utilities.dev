@@ -12,6 +12,9 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { ArrowUpDown, Copy, Trash2 } from "lucide-react";
+import { UtilityPageHero } from "@/components/utility/utility-page-hero";
+import { UtilityPageSections } from "@/components/utility/utility-page-sections";
+import manifest from "./manifest";
 import { encodeBase64, decodeBase64 } from "./utils";
 
 export default function Base64EncodingPage() {
@@ -67,14 +70,7 @@ export default function Base64EncodingPage() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="mx-auto max-w-4xl">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold tracking-tight mb-2">
-            Base64 Encoding
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Encode and decode text using Base64 encoding
-          </p>
-        </div>
+        <UtilityPageHero manifest={manifest} />
 
         <div className="grid gap-6 md:grid-cols-2">
           {/* Input Section */}
@@ -182,44 +178,7 @@ export default function Base64EncodingPage() {
           </Card>
         </div>
 
-        {/* Information Section */}
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle>About Base64 Encoding</CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">
-            <p>
-              Base64 is a binary-to-text encoding scheme that represents binary
-              data in an ASCII string format. It&apos;s commonly used for
-              encoding data that needs to be stored or transmitted over media
-              designed for text data, such as email or URLs.
-            </p>
-            <div className="mt-4 grid gap-2 md:grid-cols-2">
-              <div>
-                <h4 className="font-semibold text-foreground mb-1">
-                  Common Use Cases:
-                </h4>
-                <ul className="list-disc list-inside space-y-1">
-                  <li>Email attachments</li>
-                  <li>Data URLs in web development</li>
-                  <li>API authentication tokens</li>
-                  <li>Binary data transmission</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-1">
-                  Features:
-                </h4>
-                <ul className="list-disc list-inside space-y-1">
-                  <li>Instant encoding/decoding</li>
-                  <li>Copy results to clipboard</li>
-                  <li>Swap input and output</li>
-                  <li>Clear all fields</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <UtilityPageSections manifest={manifest} />
       </div>
     </div>
   );

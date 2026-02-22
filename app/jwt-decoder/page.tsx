@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { UtilityPageHero } from "@/components/utility/utility-page-hero";
+import { UtilityPageSections } from "@/components/utility/utility-page-sections";
 import {
   Copy,
   Trash2,
@@ -28,6 +30,7 @@ import {
   isJWTExpired,
   type DecodedJWT,
 } from "./utils";
+import manifest from "./manifest";
 
 export default function JwtDecoderPage() {
   const [inputToken, setInputToken] = useState("");
@@ -74,14 +77,7 @@ export default function JwtDecoderPage() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold tracking-tight mb-2">
-            JWT Decoder
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Decode and inspect JWT tokens with detailed information
-          </p>
-        </div>
+        <UtilityPageHero manifest={manifest} />
 
         {/* Validation Status */}
         {isValid !== null && (
@@ -366,59 +362,7 @@ export default function JwtDecoderPage() {
           </div>
         )}
 
-        {/* Information Section */}
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle>About JWT Tokens</CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">
-            <p className="mb-4">
-              JSON Web Tokens (JWT) are a compact, URL-safe means of
-              representing claims between two parties. A JWT consists of three
-              parts separated by dots: Header.Payload.Signature.
-            </p>
-            <div className="grid gap-4 md:grid-cols-2">
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Common Claims:
-                </h4>
-                <ul className="space-y-1 text-xs">
-                  <li>
-                    <strong>iss:</strong> Issuer - who issued the token
-                  </li>
-                  <li>
-                    <strong>sub:</strong> Subject - who the token is about
-                  </li>
-                  <li>
-                    <strong>aud:</strong> Audience - who the token is for
-                  </li>
-                  <li>
-                    <strong>exp:</strong> Expiration - when the token expires
-                  </li>
-                  <li>
-                    <strong>iat:</strong> Issued At - when the token was issued
-                  </li>
-                  <li>
-                    <strong>nbf:</strong> Not Before - when the token becomes
-                    valid
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Security Note:
-                </h4>
-                <p className="text-xs">
-                  This tool only decodes JWT tokens and does not verify
-                  signatures. Never paste sensitive tokens from production
-                  systems. JWT payload data is only base64 encoded, not
-                  encrypted, so sensitive information should not be stored in
-                  the payload.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <UtilityPageSections manifest={manifest} />
       </div>
     </div>
   );

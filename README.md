@@ -70,7 +70,15 @@ pnpm watch:utilities    # watch manifests and regenerate
    - `utils.test.ts`
    - `manifest.ts`
 3. Export the utility metadata from `manifest.ts` (title, description, tags, icon, etc.)
-4. `pnpm dev` picks it up automatically in homepage search + sitemap
+4. Fill in `content` fields in `manifest.ts` for consistent SEO/usability sections:
+   - `intro`
+   - `trustNote`
+   - `howToSteps`
+   - `about`
+   - `useCases`
+   - `faqs`
+   - related tools are auto-selected by relevance (category + tags)
+5. `pnpm dev` picks it up automatically in homepage search + sitemap
 
 ## 🏗️ Tech Stack
 

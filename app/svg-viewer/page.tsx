@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { UtilityPageHero } from "@/components/utility/utility-page-hero";
+import { UtilityPageSections } from "@/components/utility/utility-page-sections";
 
 import {
   Copy,
@@ -25,6 +27,7 @@ import {
   Download,
   Eye,
 } from "lucide-react";
+import manifest from "./manifest";
 import {
   formatSvg,
   minifySvg,
@@ -141,12 +144,7 @@ export default function SvgViewerPage() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold tracking-tight mb-2">SVG Viewer</h1>
-          <p className="text-muted-foreground text-lg">
-            View, format, and minify SVG files with real-time preview
-          </p>
-        </div>
+        <UtilityPageHero manifest={manifest} />
 
         <div className="grid gap-6 md:grid-cols-2">
           {/* Input Section */}
@@ -322,48 +320,7 @@ export default function SvgViewerPage() {
           </Card>
         </div>
 
-        {/* About Section */}
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle>About SVG Viewer</CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">
-            <p>
-              The SVG Viewer is a tool for working with Scalable Vector Graphics
-              (SVG) files. It provides real-time preview, formatting, and
-              minification capabilities to help developers and designers work
-              more efficiently with SVG content.
-            </p>
-            <div className="mt-4 grid gap-4 md:grid-cols-2">
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Key Features:
-                </h4>
-                <ul className="space-y-1 text-xs">
-                  <li>• Real-time SVG preview</li>
-                  <li>• Format and beautify SVG code</li>
-                  <li>• Minify SVGs for production use</li>
-                  <li>• Extract and display SVG metadata</li>
-                  <li>• Upload and download SVG files</li>
-                  <li>• Automatic validation feedback</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Use Cases:
-                </h4>
-                <ul className="space-y-1 text-xs">
-                  <li>• Clean up SVG exports from design tools</li>
-                  <li>• Validate SVG syntax before deployment</li>
-                  <li>• Optimize SVG files for web performance</li>
-                  <li>• Preview SVG files without opening them</li>
-                  <li>• Analyze SVG structure and properties</li>
-                  <li>• Convert between formatted and minified SVG</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <UtilityPageSections manifest={manifest} />
       </div>
     </div>
   );

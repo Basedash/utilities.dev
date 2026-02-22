@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { UtilityPageHero } from "@/components/utility/utility-page-hero";
+import { UtilityPageSections } from "@/components/utility/utility-page-sections";
 import { Copy, Trash2, AlertCircle, Shuffle } from "lucide-react";
 import {
   ColorValues,
@@ -20,6 +22,7 @@ import {
   hslToRgb,
   generateRandomRgb,
 } from "./utils";
+import manifest from "./manifest";
 
 export default function ColorConverterPage() {
   const [color, setColor] = useState<ColorValues>({
@@ -133,14 +136,7 @@ export default function ColorConverterPage() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold tracking-tight mb-2">
-            Color Converter
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Convert colors between different formats with live preview
-          </p>
-        </div>
+        <UtilityPageHero manifest={manifest} />
 
         {/* Status */}
         {!isValid && (
@@ -365,61 +361,7 @@ export default function ColorConverterPage() {
           </Card>
         </div>
 
-        {/* Information Section */}
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle>About Color Formats</CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">
-            <div className="grid gap-6 md:grid-cols-2">
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Format Descriptions:
-                </h4>
-                <ul className="space-y-2 text-xs">
-                  <li>
-                    <strong>HEX:</strong> Hexadecimal notation, widely used in
-                    web development
-                  </li>
-                  <li>
-                    <strong>RGB:</strong> Red, Green, Blue values (0-255),
-                    common in digital displays
-                  </li>
-                  <li>
-                    <strong>HSL:</strong> Hue, Saturation, Lightness - intuitive
-                    for designers
-                  </li>
-                  <li>
-                    <strong>HSV:</strong> Hue, Saturation, Value - similar to
-                    HSL but different lightness calculation
-                  </li>
-                  <li>
-                    <strong>CMYK:</strong> Cyan, Magenta, Yellow, Key (Black) -
-                    used in printing
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Usage Tips:
-                </h4>
-                <ul className="space-y-2 text-xs">
-                  <li>• HEX is most common for CSS and web development</li>
-                  <li>• RGB is perfect for programmatic color manipulation</li>
-                  <li>
-                    • HSL is great for creating color variations and themes
-                  </li>
-                  <li>
-                    • Use the random button to discover new color combinations
-                  </li>
-                  <li>
-                    • Click copy buttons to quickly use colors in your projects
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <UtilityPageSections manifest={manifest} />
       </div>
     </div>
   );

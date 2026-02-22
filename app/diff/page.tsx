@@ -12,7 +12,10 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { UtilityPageHero } from "@/components/utility/utility-page-hero";
+import { UtilityPageSections } from "@/components/utility/utility-page-sections";
 import { Copy, Trash2, GitCompare, FileText, RefreshCw } from "lucide-react";
+import manifest from "./manifest";
 import { diffTexts, formatUnifiedDiff, type DiffOptions } from "./utils";
 
 export default function DiffPage() {
@@ -65,14 +68,7 @@ export default function DiffPage() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold tracking-tight mb-2">
-            Text Diff Tool
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Compare two texts and see the differences highlighted
-          </p>
-        </div>
+        <UtilityPageHero manifest={manifest} />
 
         {/* Options */}
         <Card className="mb-6">
@@ -309,52 +305,7 @@ export default function DiffPage() {
           </Card>
         )}
 
-        {/* Information Section */}
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle>About Text Diff</CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">
-            <p className="mb-4">
-              This tool compares two text inputs and highlights the differences
-              between them. It uses a line-by-line comparison algorithm to
-              identify additions, deletions, and unchanged content.
-            </p>
-            <div className="grid gap-4 md:grid-cols-2">
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Color Legend:
-                </h4>
-                <ul className="space-y-1 text-xs">
-                  <li className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-green-400 rounded"></div>
-                    <span>Added lines (present in modified text)</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-red-400 rounded"></div>
-                    <span>Removed lines (present in original text)</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-gray-400 rounded"></div>
-                    <span>Unchanged lines (identical in both texts)</span>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Features:
-                </h4>
-                <ul className="space-y-1 text-xs">
-                  <li>• Line-by-line text comparison</li>
-                  <li>• Case-sensitive and case-insensitive modes</li>
-                  <li>• Whitespace normalization option</li>
-                  <li>• Copy diff results to clipboard</li>
-                  <li>• Detailed statistics and summary</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <UtilityPageSections manifest={manifest} />
       </div>
     </div>
   );

@@ -14,18 +14,19 @@ import {
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
+import { UtilityPageHero } from "@/components/utility/utility-page-hero";
+import { UtilityPageSections } from "@/components/utility/utility-page-sections";
 import {
   Copy,
   Trash2,
   AlertCircle,
   CheckCircle,
   Search,
-  Info,
 } from "lucide-react";
+import manifest from "./manifest";
 import {
   testRegex,
   buildFlagString,
-  getCommonPatterns,
   type RegexFlags,
   type RegexMatch,
 } from "./utils";
@@ -116,20 +117,10 @@ export default function RegexTesterPage() {
     setFlags((prev) => ({ ...prev, [flag]: !prev[flag] }));
   };
 
-  const commonPatterns = getCommonPatterns();
-
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold tracking-tight mb-2">
-            Regex Tester
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Test regular expressions with real-time matching and detailed
-            results
-          </p>
-        </div>
+        <UtilityPageHero manifest={manifest} />
 
         {/* Regex Pattern Section */}
         <Card className="mb-6">
@@ -423,58 +414,7 @@ export default function RegexTesterPage() {
           </Card>
         )}
 
-        {/* Information Section */}
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Info className="h-5 w-5" />
-              About Regex Tester
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">
-            <p className="mb-4">
-              Regular expressions (regex) are powerful patterns used for
-              matching character combinations in strings. This tool helps you
-              test and debug regex patterns with real-time feedback.
-            </p>
-            <div className="grid gap-4 md:grid-cols-3">
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Features:
-                </h4>
-                <ul className="list-disc list-inside space-y-1">
-                  <li>Real-time pattern testing</li>
-                  <li>Match highlighting</li>
-                  <li>Capture group details</li>
-                  <li>All regex flags supported</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Common Patterns:
-                </h4>
-                <ul className="list-disc list-inside space-y-1 font-mono text-xs">
-                  {Object.entries(commonPatterns).map(([key, pattern]) => (
-                    <li key={key}>
-                      <code>{pattern.pattern}</code> - {pattern.description}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Use Cases:
-                </h4>
-                <ul className="list-disc list-inside space-y-1">
-                  <li>Form validation</li>
-                  <li>Text parsing</li>
-                  <li>Search and replace</li>
-                  <li>Data extraction</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <UtilityPageSections manifest={manifest} />
       </div>
     </div>
   );

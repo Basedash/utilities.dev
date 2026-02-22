@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { UtilityPageHero } from "@/components/utility/utility-page-hero";
+import { UtilityPageSections } from "@/components/utility/utility-page-sections";
 
 import {
   Copy,
@@ -30,6 +32,7 @@ import {
   Code,
   Clock,
 } from "lucide-react";
+import manifest from "./manifest";
 import {
   parseMarkdown,
   formatMarkdown,
@@ -192,14 +195,7 @@ Happy writing! 🚀 **Enjoy the enhanced styling!**`;
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold tracking-tight mb-2">
-            Markdown Viewer
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Preview, format, and analyze Markdown files with real-time rendering
-          </p>
-        </div>
+        <UtilityPageHero manifest={manifest} />
 
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Input Section */}
@@ -504,50 +500,7 @@ date: 2023-01-01
           </Card>
         </div>
 
-        {/* About Section */}
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle>About Markdown Viewer</CardTitle>
-            <CardDescription>
-              A comprehensive tool for viewing, editing, and analyzing Markdown
-              files
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <h4 className="font-semibold mb-2">Features</h4>
-              <ul className="text-sm text-muted-foreground space-y-1 ml-4">
-                <li>• Real-time HTML preview with syntax highlighting</li>
-                <li>• Automatic Markdown formatting and cleanup</li>
-                <li>• Comprehensive document statistics and analysis</li>
-                <li>• YAML front matter metadata extraction</li>
-                <li>• File upload and download support</li>
-                <li>• Reading time estimation</li>
-                <li>• HTML sanitization for security</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2">Use Cases</h4>
-              <ul className="text-sm text-muted-foreground space-y-1 ml-4">
-                <li>• Preview README files and documentation</li>
-                <li>• Edit and format Markdown blog posts</li>
-                <li>• Analyze document structure and readability</li>
-                <li>• Convert Markdown to HTML for web publishing</li>
-                <li>• Validate Markdown syntax and structure</li>
-                <li>• Extract metadata from documentation files</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2">Supported Syntax</h4>
-              <p className="text-sm text-muted-foreground">
-                This tool supports GitHub Flavored Markdown (GFM) including
-                tables, task lists, strikethrough text, and syntax highlighting
-                for code blocks. It also recognizes YAML front matter for
-                metadata extraction.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+        <UtilityPageSections manifest={manifest} />
       </div>
     </div>
   );

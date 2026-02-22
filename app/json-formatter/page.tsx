@@ -11,6 +11,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { UtilityPageHero } from "@/components/utility/utility-page-hero";
+import { UtilityPageSections } from "@/components/utility/utility-page-sections";
+import manifest from "./manifest";
 
 import {
   Copy,
@@ -99,14 +102,7 @@ export default function JsonFormatterPage() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold tracking-tight mb-2">
-            JSON Formatter
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Format, minify, and validate JSON data with real-time feedback
-          </p>
-        </div>
+        <UtilityPageHero manifest={manifest} />
 
         {/* Validation Status */}
         {isValid !== null && (
@@ -261,55 +257,7 @@ export default function JsonFormatterPage() {
           </Card>
         </div>
 
-        {/* Information Section */}
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle>About JSON Formatter</CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">
-            <p className="mb-4">
-              JSON (JavaScript Object Notation) is a lightweight data
-              interchange format that&apos;s easy for humans to read and write.
-              This tool helps you format, validate, and minify JSON data for
-              better readability and debugging.
-            </p>
-            <div className="grid gap-4 md:grid-cols-3">
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Format Features:
-                </h4>
-                <ul className="list-disc list-inside space-y-1">
-                  <li>Pretty print with proper indentation</li>
-                  <li>Syntax validation</li>
-                  <li>Error highlighting</li>
-                  <li>Size and line statistics</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Use Cases:
-                </h4>
-                <ul className="list-disc list-inside space-y-1">
-                  <li>API response debugging</li>
-                  <li>Configuration file formatting</li>
-                  <li>Data structure validation</li>
-                  <li>JSON minification for production</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Tool Features:
-                </h4>
-                <ul className="list-disc list-inside space-y-1">
-                  <li>Real-time validation</li>
-                  <li>Copy to clipboard</li>
-                  <li>Format and minify options</li>
-                  <li>Detailed error messages</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <UtilityPageSections manifest={manifest} />
       </div>
     </div>
   );

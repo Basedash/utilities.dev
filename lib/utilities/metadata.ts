@@ -62,7 +62,7 @@ export function buildUtilityJsonLd(manifest: UtilityManifest) {
   const siteUrl = getSiteUrl();
   const utilityUrl = `${siteUrl}/${manifest.slug}`;
 
-  return {
+  const softwareApplication = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: manifest.title,
@@ -83,4 +83,24 @@ export function buildUtilityJsonLd(manifest: UtilityManifest) {
       url: siteUrl,
     },
   };
+
+  if (manifest.content.faqs.length === 0) {
+    return softwareApplication;
+  }
+
+  return [
+    softwareApplication,
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: manifest.content.faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
+  ];
 }

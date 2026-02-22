@@ -12,7 +12,10 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { UtilityPageHero } from "@/components/utility/utility-page-hero";
+import { UtilityPageSections } from "@/components/utility/utility-page-sections";
 import { Copy, RefreshCw, Calendar } from "lucide-react";
+import manifest from "./manifest";
 import {
   timestampToDate,
   dateToTimestamp,
@@ -94,14 +97,7 @@ export default function UnixTimestampPage() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="mx-auto max-w-4xl">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold tracking-tight mb-2">
-            Unix Timestamp Converter
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Convert Unix timestamps to human-readable dates and vice versa
-          </p>
-        </div>
+        <UtilityPageHero manifest={manifest} />
 
         {/* Current Timestamp Display */}
         <Card className="mb-6">
@@ -268,45 +264,7 @@ export default function UnixTimestampPage() {
           </Button>
         </div>
 
-        {/* Information Section */}
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle>About Unix Timestamps</CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">
-            <p className="mb-4">
-              A Unix timestamp is the number of seconds (or milliseconds) that
-              have elapsed since January 1, 1970, 00:00:00 UTC. It&apos;s a
-              standardized way to represent dates and times in computer systems.
-            </p>
-            <div className="grid gap-4 md:grid-cols-2">
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Common Use Cases:
-                </h4>
-                <ul className="list-disc list-inside space-y-1">
-                  <li>Database timestamps</li>
-                  <li>API responses</li>
-                  <li>Log file entries</li>
-                  <li>System scheduling</li>
-                  <li>Data synchronization</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  Key Facts:
-                </h4>
-                <ul className="list-disc list-inside space-y-1">
-                  <li>Epoch: January 1, 1970, 00:00:00 UTC</li>
-                  <li>Also known as POSIX time</li>
-                  <li>Language and timezone independent</li>
-                  <li>32-bit limit: January 19, 2038</li>
-                  <li>64-bit systems extend far into the future</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <UtilityPageSections manifest={manifest} />
       </div>
     </div>
   );
