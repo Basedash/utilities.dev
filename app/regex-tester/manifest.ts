@@ -6,7 +6,7 @@ const manifest: UtilityManifest = {
   slug: "regex-tester",
   title: "Regex Tester",
   description:
-    "Test regular expressions with real-time matching, capture groups, and detailed results.",
+    "Test regular expressions with live match results, capture groups, and flag-aware debugging output.",
   category: "Testing",
   tags: [
     "regex",
@@ -20,38 +20,44 @@ const manifest: UtilityManifest = {
   seo: {
     title: "Regex Tester & Validator | utilities.dev",
     description:
-      "Free online regular expression tester and debugger. Test regex patterns, view matches, capture groups, and validate regular expressions with real-time feedback.",
+      "Debug regex patterns with real-time matching, capture group inspection, and flag controls in your browser.",
   },
   content: {
-    intro: "Test regex patterns with real-time matching and group details.",
-    trustNote: "Runs in your browser for quick, local transformations.",
+    intro: "Validate regex behavior quickly with live highlights and match details.",
+    trustNote:
+      "Regex evaluation runs in your browser; final behavior can vary across languages and regex engines.",
     howToSteps: [
-      "Enter your regex pattern and flags.",
-      "Paste sample text to test against.",
-      "Review matches, groups, and highlighted results.",
+      "Enter your regex pattern and select any flags.",
+      "Paste representative sample text to test against.",
+      "Review matches and capture groups, then refine the pattern.",
     ],
     about:
-      "Regex Tester helps you iterate quickly on regular expressions and understand exactly what your pattern matches before using it in production code.",
+      "This utility helps you iterate on regular expressions with immediate feedback, reducing trial-and-error in application code. It is ideal for validating parsing rules before they are shipped to production systems.",
     useCases: [
-      "Validating form input patterns",
-      "Extracting values from logs or text files",
-      "Debugging failing regex in app code",
+      "Validating form field patterns before implementation",
+      "Extracting structured values from logs and text blobs",
+      "Debugging mismatched patterns in backend or frontend code",
     ],
     faqs: [
       {
-        question: "Does this support regex flags?",
+        question: "How does a regex tester help during development?",
         answer:
-          "Yes. You can test common flags such as global, case-insensitive, and multiline.",
+          "A regex tester lets you validate pattern behavior against real sample inputs before you ship code. This reduces false matches and missed captures in production.",
       },
       {
-        question: "Can I inspect capture groups?",
+        question: "Can I test regex flags and capture groups?",
         answer:
-          "Yes. The tool shows capture groups so you can verify extraction logic.",
+          "Yes, you can apply common flags and inspect each capture group in the match results. That visibility makes it easier to confirm exactly what each subpattern extracts.",
       },
       {
-        question: "Is regex behavior identical across all languages?",
+        question: "Why can a regex work here but fail in another language?",
         answer:
-          "Not always. Syntax and behavior vary by runtime, so verify in your target environment.",
+          "Regex engines differ by runtime, so syntax support and matching behavior are not always identical. Always test final patterns in the exact language and framework you deploy.",
+      },
+      {
+        question: "How can I reduce false matches in regex patterns?",
+        answer:
+          "Use anchors, tighter character classes, and realistic sample text to constrain matching. Iterative testing with highlighted output helps you catch overbroad patterns quickly.",
       },
     ],
   },

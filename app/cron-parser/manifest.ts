@@ -6,45 +6,51 @@ const manifest: UtilityManifest = {
   slug: "cron-parser",
   title: "Cron Expression Parser",
   description:
-    "Parse and understand cron expressions with human-readable descriptions and upcoming execution times.",
+    "Parse cron expressions into human-readable schedules and preview upcoming run times before deployment.",
   category: "Development",
   tags: ["cron", "schedule", "parser", "time", "automation", "unix"],
   icon: Clock,
   seo: {
-    title: "Cron Expression Parser & Generator | utilities.dev",
+    title: "Cron Expression Parser | utilities.dev",
     description:
-      "Free online cron expression parser and generator. Parse cron expressions into human-readable descriptions and see upcoming execution times with detailed syntax help.",
+      "Understand cron syntax quickly by parsing expressions into readable schedules and next-run previews in your browser.",
   },
   content: {
-    intro: "Understand cron expressions with human-readable scheduling output.",
-    trustNote: "Runs in your browser for quick, local transformations.",
+    intro: "Translate cron expressions into readable schedules and verify run timing.",
+    trustNote:
+      "Cron parsing runs locally in your browser, but scheduler behavior can still vary by platform and timezone settings.",
     howToSteps: [
-      "Enter a cron expression in the input field.",
-      "Review parsed fields and schedule description.",
-      "Inspect upcoming execution times to verify behavior.",
+      "Enter a cron expression in the parser input.",
+      "Check the field breakdown and human-readable schedule text.",
+      "Review upcoming run times and validate against your target environment.",
     ],
     about:
-      "Cron Parser helps developers validate and explain cron schedules, reducing mistakes when configuring jobs and automations.",
+      "This tool helps you validate cron syntax and explain schedule intent before shipping job configurations. It is especially useful for preventing production scheduling mistakes caused by ambiguous fields or timezone assumptions.",
     useCases: [
-      "Verifying production job schedules",
-      "Explaining cron syntax to teammates",
-      "Checking next run times before deployment",
+      "Verifying recurring job schedules before deploy",
+      "Explaining cron expressions during reviews",
+      "Checking next execution windows for automation tasks",
     ],
     faqs: [
       {
-        question: "Does this support both 5 and 6 field cron formats?",
+        question: "Can this parser handle both 5-field and 6-field cron expressions?",
         answer:
-          "Yes. It supports common 5-field syntax and compatible 6-field variants.",
+          "Yes, it supports common 5-field syntax and compatible 6-field variants used by some schedulers. Always confirm the exact format your runtime expects.",
       },
       {
-        question: "Can I preview future run dates?",
+        question: "How do I verify when a cron job will run next?",
         answer:
-          "Yes. The tool lists upcoming executions so you can verify timing.",
+          "Enter the expression and review the upcoming execution list to confirm timing. This catches mistakes early before jobs are deployed.",
       },
       {
-        question: "Do cron implementations differ?",
+        question: "Why can the same cron expression behave differently across platforms?",
         answer:
-          "They can. Always confirm behavior against your exact scheduler runtime.",
+          "Cron engines differ in supported fields, special characters, and timezone handling. Validate expressions against the exact scheduler implementation you run in production.",
+      },
+      {
+        question: "What cron mistakes cause the most scheduling bugs?",
+        answer:
+          "Common issues include mixing day-of-month with day-of-week semantics and misunderstanding step intervals. Another frequent problem is assuming every platform supports the same special tokens.",
       },
     ],
   },

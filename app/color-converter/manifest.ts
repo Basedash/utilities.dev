@@ -6,45 +6,51 @@ const manifest: UtilityManifest = {
   slug: "color-converter",
   title: "Color Converter",
   description:
-    "Convert colors between different formats including HEX, RGB, HSL, HSV, and more with live preview.",
+    "Convert colors between HEX, RGB, HSL, and HSV with instant previews for design and frontend workflows.",
   category: "Design",
   tags: ["color", "hex", "rgb", "hsl", "hsv", "convert", "picker", "design"],
   icon: Palette,
   seo: {
-    title: "Color Converter & Picker | utilities.dev",
+    title: "Color Converter (HEX, RGB, HSL, HSV) | utilities.dev",
     description:
-      "Free online color converter and picker. Convert colors between HEX, RGB, HSL, HSV, and other formats with live preview and copy functionality.",
+      "Convert HEX, RGB, HSL, and HSV color values in your browser with live preview and copy-ready output for CSS and design systems.",
   },
   content: {
-    intro: "Convert colors between HEX, RGB, HSL, and HSV formats.",
-    trustNote: "Runs in your browser for quick, local transformations.",
+    intro: "Convert color values across common web formats without losing visual intent.",
+    trustNote:
+      "Color conversions run locally in your browser; displayed values depend on supported precision and rounding.",
     howToSteps: [
-      "Enter a color value in any supported format.",
-      "View converted values in other formats instantly.",
-      "Copy the format you need for your code or design tool.",
+      "Enter a color in HEX, RGB, HSL, or HSV format.",
+      "Review converted values and the live preview swatch.",
+      "Copy the target format for CSS, tokens, or design documentation.",
     ],
     about:
-      "Color Converter is a fast utility for translating values between common color systems used in design and frontend development.",
+      "This utility translates color values across formats commonly used in UI design and frontend code. It helps you keep color intent consistent when moving between design tools, style sheets, and component tokens.",
     useCases: [
-      "Converting brand colors for CSS",
-      "Switching between design and code formats",
-      "Checking color values while prototyping",
+      "Converting brand palette values into CSS-ready formats",
+      "Translating design handoff colors into component tokens",
+      "Checking equivalent values while prototyping themes",
     ],
     faqs: [
       {
-        question: "Which formats are supported?",
+        question: "What color formats can this converter handle?",
         answer:
-          "The tool supports common web color formats such as HEX, RGB, HSL, and HSV.",
+          "The converter supports HEX, RGB, HSL, and HSV color formats used in most web and design workflows. You can enter any supported format and get equivalent values in the others.",
       },
       {
-        question: "Does conversion change the color itself?",
+        question: "Does converting between HEX, RGB, HSL, and HSV change the color?",
         answer:
-          "No. Only the representation changes, not the underlying color value.",
+          "No, conversion changes representation, not intended color. Small numeric differences can appear from rounding, especially when formats use different precision.",
       },
       {
-        question: "Can I use shorthand HEX values?",
+        question: "Can I use shorthand HEX values like #fff?",
         answer:
-          "Yes. Shorthand values are expanded and converted to equivalent full forms.",
+          "Yes, shorthand HEX values are expanded to full six-digit form before conversion. The resulting RGB, HSL, and HSV outputs represent the same color.",
+      },
+      {
+        question: "When should I edit colors in HSL instead of RGB?",
+        answer:
+          "HSL is easier when you want to tune hue, saturation, or lightness by intent. RGB is often better when matching channel-level values from graphics APIs or existing CSS.",
       },
     ],
   },

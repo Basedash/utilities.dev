@@ -6,7 +6,7 @@ const manifest: UtilityManifest = {
   slug: "markdown-viewer",
   title: "Markdown Viewer",
   description:
-    "Preview, format, and analyze Markdown files with real-time HTML output. Extract metadata, calculate reading time, and validate syntax.",
+    "Preview and analyze Markdown with live rendering, formatting tools, and document statistics.",
   category: "Formatting",
   tags: [
     "markdown",
@@ -21,10 +21,9 @@ const manifest: UtilityManifest = {
   ],
   icon: Eye,
   seo: {
-    title:
-      "Markdown Viewer - Preview, Format, and Analyze Markdown Files | utilities.dev",
+    title: "Markdown Viewer and Formatter | utilities.dev",
     description:
-      "View, format, and analyze Markdown files with real-time HTML preview. Validate Markdown syntax, extract metadata, and count words, characters, and reading time. Free online Markdown viewer and editor tool.",
+      "Preview Markdown in real time, format source text, and inspect document metrics in your browser for faster documentation workflows.",
     keywords: [
       "markdown viewer",
       "markdown editor",
@@ -39,35 +38,41 @@ const manifest: UtilityManifest = {
     ],
   },
   content: {
-    intro: "Render and analyze Markdown with live preview and document stats.",
-    trustNote: "Runs in your browser for quick, local transformations.",
+    intro: "Render Markdown live and refine docs before publishing or committing.",
+    trustNote:
+      "Markdown rendering and formatting run in your browser; final site output may still differ based on production plugins.",
     howToSteps: [
-      "Paste Markdown content or upload a file.",
-      "Review rendered preview and syntax-highlighted code blocks.",
-      "Format content and copy or download the updated Markdown.",
+      "Paste Markdown text or load a Markdown file.",
+      "Review the live preview and document statistics.",
+      "Format the source and copy or download the updated output.",
     ],
     about:
-      "Markdown Viewer is designed for editing and validating markdown documents with immediate preview, metadata extraction, and readability metrics.",
+      "This utility helps you author and review Markdown with immediate visual feedback and structure checks. It is useful for README editing, docs cleanup, and validating content before publishing.",
     useCases: [
-      "Previewing README files before commits",
-      "Formatting documentation quickly",
-      "Checking document structure and reading time",
+      "Previewing README updates before pull requests",
+      "Formatting technical docs for consistent structure",
+      "Checking word count and reading time for knowledge base content",
     ],
     faqs: [
       {
-        question: "Does this support GitHub-flavored Markdown?",
+        question: "Does this Markdown viewer support common GitHub-style syntax?",
         answer:
-          "Yes. Common markdown constructs, including code blocks, are supported for preview.",
+          "It supports widely used Markdown syntax such as headings, lists, links, and fenced code blocks. Rendering can still differ from a specific platform's custom extensions.",
       },
       {
-        question: "Can I extract front matter metadata?",
+        question: "Will preview output always match production rendering?",
         answer:
-          "Yes. YAML front matter fields are parsed and displayed in the metadata section.",
+          "Not always, because production pipelines may apply custom plugins, transforms, or sanitization rules. Treat preview as an authoring reference, then verify in your deployment environment.",
       },
       {
-        question: "Will this convert Markdown to final production HTML?",
+        question: "Can I inspect YAML front matter in Markdown files?",
         answer:
-          "It provides preview rendering for authoring, but production pipelines may apply additional processing.",
+          "Yes, the tool can extract front matter so you can review metadata fields alongside content. This is useful when validating docs used by static site generators.",
+      },
+      {
+        question: "Is my Markdown content processed locally?",
+        answer:
+          "Yes, Markdown processing is handled in your browser session for fast local feedback. Follow internal policy before pasting sensitive internal documentation.",
       },
     ],
   },

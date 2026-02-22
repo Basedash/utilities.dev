@@ -6,45 +6,51 @@ const manifest: UtilityManifest = {
   slug: "json-formatter",
   title: "JSON Formatter",
   description:
-    "Format, minify, and validate JSON data with syntax highlighting and error detection.",
+    "Format, validate, and minify JSON with clear error feedback for API and configuration workflows.",
   category: "Formatting",
   tags: ["json", "format", "validate", "prettify", "minify", "syntax"],
   icon: FileText,
   seo: {
-    title: "JSON Formatter & Validator | utilities.dev",
+    title: "JSON Formatter and Validator | utilities.dev",
     description:
-      "Free online JSON formatter, prettifier, and validator. Format, minify, and validate JSON data with syntax highlighting and error detection.",
+      "Format, validate, and minify JSON in your browser with syntax error feedback. Useful for API payload debugging and config cleanup.",
   },
   content: {
-    intro: "Format, validate, and minify JSON with instant feedback.",
-    trustNote: "Runs in your browser for quick, local transformations.",
+    intro: "Clean up JSON and catch syntax issues before it reaches production.",
+    trustNote:
+      "JSON processing runs in your browser; invalid input is never silently fixed or sent to a server.",
     howToSteps: [
-      "Paste your JSON into the input field.",
-      "Choose Format, Minify, or Validate.",
-      "Copy the output and use it in your API, config, or code.",
+      "Paste JSON into the editor input.",
+      "Choose Format, Minify, or Validate based on your task.",
+      "Copy the result or use validation feedback to fix syntax errors.",
     ],
     about:
-      "This utility helps you clean, validate, and compress JSON safely. It is useful for debugging API responses and preparing JSON payloads for production use.",
+      "This utility helps you make JSON readable, compact, and syntactically correct in one place. It is useful when debugging API responses, preparing request bodies, and reviewing config files before commit.",
     useCases: [
-      "Debugging malformed API responses",
-      "Pretty-printing JSON for code reviews",
-      "Minifying JSON before shipping payloads",
+      "Validating request and response payloads during API debugging",
+      "Formatting JSON for easier code review discussion",
+      "Minifying JSON before embedding in transport payloads",
     ],
     faqs: [
       {
-        question: "Does this tool modify my data?",
+        question: "What is the difference between formatting, minifying, and validating JSON?",
         answer:
-          "No. It only formats or validates the JSON you paste into the editor.",
+          "Formatting adds indentation for readability, minifying removes whitespace for compact output, and validation checks syntax correctness. These operations do not change the underlying data model.",
       },
       {
-        question: "What happens on invalid JSON?",
+        question: "What happens when the JSON is invalid?",
         answer:
-          "You get a clear validation error and no output is produced until fixed.",
+          "The tool returns a parse error so you can locate and correct malformed syntax. Invalid JSON is not formatted or minified into output.",
       },
       {
-        question: "Can I use this for large JSON payloads?",
+        question: "Does formatting JSON change keys or values?",
         answer:
-          "Yes for typical payload sizes. Very large data may be limited by browser memory.",
+          "No, formatting changes whitespace and indentation only. Key order may appear preserved, but JSON semantics should not depend on ordering.",
+      },
+      {
+        question: "Is it safe to paste private JSON into this formatter?",
+        answer:
+          "The formatter processes input in your browser session, which avoids network submission by the tool itself. You should still follow your organization policy before handling sensitive production data.",
       },
     ],
   },

@@ -6,45 +6,51 @@ const manifest: UtilityManifest = {
   slug: "diff",
   title: "Text Diff Tool",
   description:
-    "Compare two text blocks and highlight differences line by line. Perfect for code reviews and document comparisons.",
+    "Compare two text blocks line by line to spot additions, removals, and edits during reviews.",
   category: "Development",
   tags: ["diff", "compare", "text", "changes", "review", "git", "patch"],
   icon: GitCompare,
   seo: {
     title: "Text Diff Tool | utilities.dev",
     description:
-      "Free online text diff tool to compare two text blocks and highlight differences. Perfect for code reviews, document comparisons, and spotting changes.",
+      "Compare original and updated text side by side, highlight changed lines, and copy diff output for code reviews and document checks.",
   },
   content: {
-    intro: "Compare two text blocks and highlight line-by-line changes.",
-    trustNote: "Runs in your browser for quick, local transformations.",
+    intro: "Find exact line-level changes between two versions of text.",
+    trustNote:
+      "Diff processing happens locally in your browser; very large inputs can be slower depending on device memory and CPU.",
     howToSteps: [
-      "Paste the original text in the first panel.",
-      "Paste the updated text in the second panel.",
-      "Review additions, removals, and copied diff output.",
+      "Paste the original text into the left input panel.",
+      "Paste the updated text into the right input panel.",
+      "Review highlighted differences and copy the output for sharing.",
     ],
     about:
-      "Text Diff Tool compares two versions of content and clearly marks changes. It helps with reviews, debugging, and checking edits before publishing.",
+      "This utility shows what changed between two text versions so you can review edits with less guesswork. It works well for code snippets, configuration files, and document revisions where precise differences matter.",
     useCases: [
-      "Reviewing config file changes",
-      "Comparing code snippets quickly",
-      "Auditing document revisions",
+      "Checking code changes before opening a pull request",
+      "Comparing configuration updates between environments",
+      "Auditing edits in policy or documentation text",
     ],
     faqs: [
       {
-        question: "Can I ignore whitespace and case differences?",
+        question: "When should I use a text diff tool?",
         answer:
-          "Yes. You can toggle comparison options to ignore whitespace and case.",
+          "Use a text diff tool when you need to compare two versions and identify exactly what changed. It is especially helpful for code reviews, config checks, and document revisions.",
       },
       {
-        question: "Does this support copying unified diff output?",
+        question: "Can I ignore whitespace or letter case differences?",
         answer:
-          "Yes. Use the copy action in the stats section to export diff text.",
+          "Yes, those options help reduce noise from formatting-only edits. Ignoring non-semantic changes makes functional differences easier to review.",
       },
       {
-        question: "Is this suitable for large files?",
+        question: "Can I copy diff output for pull requests or reviews?",
         answer:
-          "It works well for common text sizes. Very large inputs may be limited by browser performance.",
+          "Yes, you can copy generated diff output and paste it into reviews, issues, or team chat. This is useful when you need to discuss changes outside a full Git workflow.",
+      },
+      {
+        question: "Will this tool handle very large files?",
+        answer:
+          "It handles typical code and document sizes well, but extremely large inputs may feel slower. Performance depends on browser resources because comparison runs client-side.",
       },
     ],
   },

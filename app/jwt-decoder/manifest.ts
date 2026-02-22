@@ -6,45 +6,51 @@ const manifest: UtilityManifest = {
   slug: "jwt-decoder",
   title: "JWT Decoder",
   description:
-    "Decode and inspect JWT tokens with detailed header, payload, and signature information.",
+    "Decode JWT tokens to inspect header and payload claims while debugging authentication flows.",
   category: "Security",
   tags: ["jwt", "token", "decode", "authentication", "security", "json"],
   icon: Key,
   seo: {
-    title: "JWT Decoder & Inspector | utilities.dev",
+    title: "JWT Decoder and Inspector | utilities.dev",
     description:
-      "Free online JWT token decoder and inspector. Decode and examine JWT header, payload, and signature with detailed information and validation.",
+      "Decode JWT tokens in your browser to inspect headers, claims, and timestamps. Useful for auth debugging without exposing data to external services.",
   },
   content: {
-    intro: "Decode JWT header, payload, and signature details instantly.",
-    trustNote: "Runs in your browser for quick, local transformations.",
+    intro: "Inspect JWT structure and claims quickly during authentication debugging.",
+    trustNote:
+      "Token parsing runs locally in your browser; decoding reveals claims but does not verify signature authenticity.",
     howToSteps: [
-      "Paste a JWT token into the input box.",
-      "Inspect decoded header and payload claims.",
-      "Check expiration timestamps and copy fields as needed.",
+      "Paste a JWT string into the decoder input.",
+      "Review decoded header and payload claims.",
+      "Inspect time-based claims and copy fields for debugging or logs.",
     ],
     about:
-      "JWT Decoder helps you inspect token structure and claim values while debugging authentication flows. It decodes tokens locally and does not verify signatures.",
+      "This tool helps you inspect JWT claim data so you can debug authentication and authorization issues faster. It focuses on decoding and readability, and signature verification must still happen in your backend or identity layer.",
     useCases: [
-      "Debugging auth flows during development",
-      "Inspecting exp, iat, and nbf claims",
-      "Reviewing token payload content quickly",
+      "Checking `exp`, `iat`, and `nbf` values during login debugging",
+      "Inspecting claim payloads for role and scope troubleshooting",
+      "Reviewing JWT headers for algorithm and key identifier details",
     ],
     faqs: [
       {
-        question: "Does this verify token signatures?",
+        question: "What does a JWT decoder do?",
         answer:
-          "No. It decodes JWT segments but does not validate signatures against a secret or public key.",
+          "A JWT decoder parses token segments so you can read header and payload data in plain JSON form. It helps you inspect claims and metadata during auth troubleshooting.",
       },
       {
-        question: "Should I paste production tokens here?",
+        question: "Does decoding a JWT verify its signature?",
         answer:
-          "Avoid pasting sensitive production credentials in any browser tool unless your policy allows it.",
+          "No, decoding only reads token contents. Signature validation requires the correct secret or public key and should be done by your auth backend.",
       },
       {
-        question: "Why is a JWT readable?",
+        question: "Why are JWT claims readable in plain text?",
         answer:
-          "JWT payloads are Base64URL encoded, not encrypted, unless additional encryption is used.",
+          "JWT payloads are Base64URL encoded by default, not encrypted, so claims are easy to decode. Do not place secrets in claims unless you are using additional encryption controls.",
+      },
+      {
+        question: "Is it safe to paste production JWTs into a browser tool?",
+        answer:
+          "Only if your security policy allows it, because tokens can include sensitive identity and authorization details. Prefer sanitized or short-lived tokens for debugging whenever possible.",
       },
     ],
   },
