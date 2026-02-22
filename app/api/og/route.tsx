@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import type { NextRequest } from "next/server";
 import { utilitiesBySlug } from "@/lib/generated/utilities-index";
+import { getCategoryLabel } from "@/lib/utilities/categories";
 
 export const runtime = "edge";
 
@@ -17,7 +18,7 @@ export async function GET(request: NextRequest) {
   const subtitle = utility
     ? utility.description
     : "Fast, free, and practical tools for everyday coding work.";
-  const badge = utility ? utility.category : "Developer Utilities";
+  const badge = utility ? getCategoryLabel(utility.category) : "Developer Utilities";
 
   return new ImageResponse(
     (

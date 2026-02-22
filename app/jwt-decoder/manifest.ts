@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "JWT Decoder",
   description:
     "Decode JWT tokens to inspect header and payload claims while debugging authentication flows.",
-  category: "Security",
+  category: "security-tokens",
   tags: ["jwt", "token", "decode", "authentication", "security", "json"],
   icon: Key,
   seo: {

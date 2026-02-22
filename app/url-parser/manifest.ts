@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "URL Parser",
   description:
     "Parse URLs into protocol, host, path, query params, and hash with an editable view to rebuild and copy.",
-  category: "Formatting",
+  category: "web-http",
   tags: ["url", "parse", "query", "params", "host", "path"],
   icon: Link2,
   seo: {

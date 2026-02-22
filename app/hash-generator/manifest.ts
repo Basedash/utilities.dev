@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "Hash Generator",
   description:
     "Generate SHA-1, SHA-256, SHA-384, and SHA-512 hashes from text with browser-local processing.",
-  category: "Encoding",
+  category: "encoding-hashing",
   tags: ["hash", "sha", "sha256", "checksum", "digest", "crypto"],
   icon: Hash,
   seo: {

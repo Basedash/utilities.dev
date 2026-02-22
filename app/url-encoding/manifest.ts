@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "URL Encoder Decoder",
   description:
     "Encode and decode URL percent-encoded strings for query parameters and safe transport in links.",
-  category: "Encoding",
+  category: "web-http",
   tags: ["encoding", "url", "percent-encode", "decode", "query", "links"],
   icon: Link,
   seo: {

@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "Color Converter",
   description:
     "Convert colors between HEX, RGB, HSL, and HSV with instant previews for design and frontend workflows.",
-  category: "Design",
+  category: "color-design",
   tags: ["color", "hex", "rgb", "hsl", "hsv", "convert", "picker", "design"],
   icon: Palette,
   seo: {

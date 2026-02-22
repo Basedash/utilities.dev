@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "Text Diff Tool",
   description:
     "Compare two text blocks line by line to spot additions, removals, and edits during reviews.",
-  category: "Development",
+  category: "dev-productivity",
   tags: ["diff", "compare", "text", "changes", "review", "git", "patch"],
   icon: GitCompare,
   seo: {

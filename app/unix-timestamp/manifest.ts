@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "Unix Timestamp Converter",
   description:
     "Convert Unix timestamps and human-readable dates with support for seconds and milliseconds.",
-  category: "Development",
+  category: "time-scheduling",
   tags: ["unix", "timestamp", "epoch", "date", "time", "converter", "posix"],
   icon: Timer,
   seo: {

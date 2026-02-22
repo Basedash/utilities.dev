@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import type { UtilityCategoryId } from "@/lib/utilities/categories";
 
 export interface UtilitySeoConfig {
   title?: string;
@@ -25,7 +26,7 @@ export interface UtilityManifest {
   slug: string;
   title: string;
   description: string;
-  category: string;
+  category: UtilityCategoryId;
   tags: string[];
   icon: LucideIcon;
   seo?: UtilitySeoConfig;

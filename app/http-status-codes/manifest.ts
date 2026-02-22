@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "HTTP Status Codes Reference",
   description:
     "Search and browse HTTP status codes by category with quick lookup by code or phrase.",
-  category: "Reference",
+  category: "web-http",
   tags: ["http", "status", "codes", "api", "rest", "reference", "1xx", "2xx", "3xx", "4xx", "5xx"],
   icon: FileSearch,
   seo: {

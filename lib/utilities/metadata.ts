@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { mapToSeoApplicationCategory } from "@/lib/utilities/categories";
 import type { UtilityManifest } from "@/lib/utilities/types";
 import { getOgImageUrl, getSiteUrl, SITE_NAME } from "@/lib/utilities/site";
 
@@ -66,7 +67,7 @@ export function buildUtilityJsonLd(manifest: UtilityManifest) {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: manifest.title,
-    applicationCategory: manifest.category,
+    applicationCategory: mapToSeoApplicationCategory(manifest.category),
     operatingSystem: "Any",
     isAccessibleForFree: true,
     description: manifest.description,

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getCategoryLabel } from "@/lib/utilities/categories";
 import { getRelatedUtilities } from "@/lib/utilities/related";
 import type { UtilityManifest } from "@/lib/utilities/types";
 
@@ -94,7 +95,7 @@ export function UtilityPageSections({ manifest }: UtilityPageSectionsProps) {
                           <IconComponent className="h-5 w-5" />
                         </div>
                         <Badge variant="outline" className="text-xs">
-                          {utility.category}
+                          {getCategoryLabel(utility.category)}
                         </Badge>
                       </div>
                       <CardTitle className="group-hover:text-primary transition-colors">

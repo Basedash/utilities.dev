@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "UUID Generator and Validator",
   description:
     "Generate UUID v4 identifiers and validate UUID strings locally in your browser.",
-  category: "Encoding",
+  category: "dev-productivity",
   tags: ["uuid", "guid", "generate", "validate", "identifier", "v4"],
   icon: Hash,
   seo: {

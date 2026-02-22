@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "Regex Tester",
   description:
     "Test regular expressions with live match results, capture groups, and flag-aware debugging output.",
-  category: "Testing",
+  category: "text-regex",
   tags: [
     "regex",
     "regular expression",

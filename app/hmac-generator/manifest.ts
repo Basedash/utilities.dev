@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "HMAC Generator",
   description:
     "Generate HMAC signatures for messages and secrets using SHA-1, SHA-256, SHA-384, or SHA-512.",
-  category: "Encoding",
+  category: "encoding-hashing",
   tags: ["hmac", "signature", "crypto", "sha256", "authentication"],
   icon: Key,
   seo: {

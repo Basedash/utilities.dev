@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "Base64 Encoding",
   description:
     "Encode and decode Base64 strings to safely move text and binary content through text-only systems.",
-  category: "Encoding",
+  category: "encoding-hashing",
   tags: ["encoding", "base64", "decode", "binary", "text"],
   icon: Code,
   seo: {

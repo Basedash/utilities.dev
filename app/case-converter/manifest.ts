@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "Case Converter",
   description:
     "Convert text between camelCase, PascalCase, snake_case, kebab-case, and UPPER_SNAKE_CASE with readable word splitting.",
-  category: "Formatting",
+  category: "data-formatting",
   tags: ["case", "camel", "snake", "kebab", "pascal", "naming"],
   icon: CaseSensitive,
   seo: {

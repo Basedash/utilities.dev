@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "JSON Formatter",
   description:
     "Format, validate, and minify JSON with clear error feedback for API and configuration workflows.",
-  category: "Formatting",
+  category: "data-formatting",
   tags: ["json", "format", "validate", "prettify", "minify", "syntax"],
   icon: FileText,
   seo: {

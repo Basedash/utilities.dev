@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "Markdown Viewer",
   description:
     "Preview and analyze Markdown with live rendering, formatting tools, and document statistics.",
-  category: "Formatting",
+  category: "data-formatting",
   tags: [
     "markdown",
     "md",

@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "JSON YAML Converter",
   description:
     "Convert between JSON and YAML formats with validation and error feedback for config and API workflows.",
-  category: "Formatting",
+  category: "data-formatting",
   tags: ["json", "yaml", "convert", "config", "format", "validate"],
   icon: ArrowLeftRight,
   seo: {

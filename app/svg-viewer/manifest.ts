@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "SVG Viewer",
   description:
     "Preview, validate, and optimize SVG markup with live rendering for frontend and design workflows.",
-  category: "Design",
+  category: "color-design",
   tags: [
     "svg",
     "vector",

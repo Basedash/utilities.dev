@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "Text Escape Unescape",
   description:
     "Escape and unescape text for JSON, JavaScript, regex, and newline contexts with context-specific rules.",
-  category: "Encoding",
+  category: "text-regex",
   tags: ["escape", "unescape", "json", "javascript", "regex", "string"],
   icon: Code,
   seo: {

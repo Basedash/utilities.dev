@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "Cron Expression Parser",
   description:
     "Parse cron expressions into human-readable schedules and preview upcoming run times before deployment.",
-  category: "Development",
+  category: "time-scheduling",
   tags: ["cron", "schedule", "parser", "time", "automation", "unix"],
   icon: Clock,
   seo: {

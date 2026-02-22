@@ -7,7 +7,7 @@ const manifest: UtilityManifest = {
   title: "HTML Entity Encoder Decoder",
   description:
     "Encode special characters to HTML entities and decode named or numeric entities back to plain text.",
-  category: "Encoding",
+  category: "encoding-hashing",
   tags: ["encoding", "html", "entities", "decode", "encode", "escape"],
   icon: Code,
   seo: {

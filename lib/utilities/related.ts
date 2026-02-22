@@ -1,4 +1,5 @@
 import { utilities } from "@/lib/generated/utilities-index";
+import { getCategoryAffinityBonus } from "@/lib/utilities/categories";
 import type { UtilityManifest } from "@/lib/utilities/types";
 
 function normalizeToken(token: string): string {
@@ -32,7 +33,7 @@ export function getRelatedUtilities(
       ).length;
 
       const score =
-        (candidate.category === source.category ? 5 : 0) +
+        getCategoryAffinityBonus(source.category, candidate.category) +
         sharedTags * 2 +
         sharedTitleTokens;
 
