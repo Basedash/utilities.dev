@@ -15,6 +15,11 @@ export function Header() {
         </Link>
 
         <div className="flex items-center gap-2">
+          <Link href="/about">
+            <Button variant="ghost" size="sm">
+              About
+            </Button>
+          </Link>
           <Link
             href="https://github.com/Basedash/utilities.dev"
             target="_blank"
