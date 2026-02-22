@@ -137,7 +137,7 @@ export default function HashGeneratorPage() {
                   ))}
                 </select>
                 <Button
-                  onClick={handleHash}
+                  onClick={() => void handleHash()}
                   disabled={!inputText || isComputing}
                   className="flex-1 min-w-[100px]"
                 >

@@ -9,6 +9,7 @@ export const HASH_ALGORITHMS = [
 ] as const;
 
 export type HashAlgorithm = (typeof HASH_ALGORITHMS)[number];
+type SubtleCryptoLike = Pick<SubtleCrypto, "digest">;
 
 /**
  * Hash result with status
@@ -40,7 +41,7 @@ export function isValidAlgorithm(algorithm: string): algorithm is HashAlgorithm 
  * Gets the SubtleCrypto implementation.
  * Uses Web Crypto in browser, Node crypto in test/Node environments.
  */
-async function getSubtleCrypto(): Promise<SubtleCrypto> {
+async function getSubtleCrypto(): Promise<SubtleCryptoLike> {
   if (typeof crypto !== "undefined" && crypto.subtle) {
     return crypto.subtle;
   }
@@ -55,7 +56,7 @@ async function getSubtleCrypto(): Promise<SubtleCrypto> {
 export async function hashText(
   input: string,
   algorithm: HashAlgorithm,
-  subtleCrypto?: SubtleCrypto
+  subtleCrypto?: SubtleCryptoLike
 ): Promise<HashResult> {
   if (typeof input !== "string") {
     return {

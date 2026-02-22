@@ -19,7 +19,7 @@ function main(): void {
     counts.set(utility.category, (counts.get(utility.category) ?? 0) + 1);
   }
 
-  const totalUtilities = utilities.length;
+  const totalUtilities: number = utilities.length;
   const maxAllowedShare = 0.4;
   for (const category of categories) {
     const count = counts.get(category.id) ?? 0;
