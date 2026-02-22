@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "SVG Viewer - View, Format, and Analyze SVG Files | Utilities.dev",
   description:
-    "View, format, minify, and analyze SVG files with real-time preview. Validate SVG syntax, extract metadata, and sanitize potentially dangerous elements. Free online SVG viewer and editor tool.",
+    "View, format, minify, and analyze SVG files with real-time preview. Validate SVG syntax, extract metadata, and preview safely in your browser. Free online SVG viewer and editor tool.",
   keywords: [
     "SVG viewer",
     "SVG editor",

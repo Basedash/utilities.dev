@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -45,6 +46,11 @@ export default function SvgViewerPage() {
   });
   const [metadata, setMetadata] = useState<Record<string, string>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const previewSrc = useMemo(() => {
+    if (!inputSvg.trim() || !isValid) return "";
+    // Render SVG in an <img> data URL to avoid executing embedded scripts/events.
+    return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(inputSvg)}`;
+  }, [inputSvg, isValid]);
 
   // Auto-validate and update metadata when input changes
   useEffect(() => {
@@ -242,12 +248,16 @@ export default function SvgViewerPage() {
               {inputSvg && isValid ? (
                 <>
                   <div className="flex items-center justify-center min-h-[300px] border rounded-lg bg-white dark:bg-gray-50 p-4">
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: inputSvg,
-                      }}
-                      className="max-w-full max-h-[300px] overflow-auto"
-                    />
+                    <div className="relative w-full h-[300px]">
+                      <Image
+                        src={previewSrc}
+                        alt="SVG preview"
+                        fill
+                        unoptimized
+                        className="object-contain"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
                   </div>
 
                   {/* SVG Details */}
