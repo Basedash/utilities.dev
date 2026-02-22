@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -34,49 +34,49 @@ import {
   SvgStats,
 } from "./utils";
 
+const EMPTY_SVG_STATS: SvgStats = {
+  size: 0,
+  elements: 0,
+  hasScripts: false,
+  hasStyles: false,
+};
+
 export default function SvgViewerPage() {
   const [inputSvg, setInputSvg] = useState("");
-  const [isValid, setIsValid] = useState<boolean | null>(null);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [stats, setStats] = useState<SvgStats>({
-    size: 0,
-    elements: 0,
-    hasScripts: false,
-    hasStyles: false,
-  });
-  const [metadata, setMetadata] = useState<Record<string, string>>({});
+  const { isValid, errorMessage, stats, metadata } = useMemo(() => {
+    if (!inputSvg.trim()) {
+      return {
+        isValid: null as boolean | null,
+        errorMessage: "",
+        stats: EMPTY_SVG_STATS,
+        metadata: {} as Record<string, string>,
+      };
+    }
+
+    const validation = validateSvg(inputSvg);
+    if (!validation.isValid) {
+      return {
+        isValid: false,
+        errorMessage: validation.error || "Invalid SVG",
+        stats: EMPTY_SVG_STATS,
+        metadata: {} as Record<string, string>,
+      };
+    }
+
+    const result = formatSvg(inputSvg);
+    return {
+      isValid: true,
+      errorMessage: "",
+      stats: result.success && result.stats ? result.stats : EMPTY_SVG_STATS,
+      metadata: extractSvgMetadata(inputSvg),
+    };
+  }, [inputSvg]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const previewSrc = useMemo(() => {
     if (!inputSvg.trim() || !isValid) return "";
     // Render SVG in an <img> data URL to avoid executing embedded scripts/events.
     return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(inputSvg)}`;
   }, [inputSvg, isValid]);
-
-  // Auto-validate and update metadata when input changes
-  useEffect(() => {
-    if (!inputSvg.trim()) {
-      setIsValid(null);
-      setErrorMessage("");
-      setStats({ size: 0, elements: 0, hasScripts: false, hasStyles: false });
-      setMetadata({});
-      return;
-    }
-
-    const validation = validateSvg(inputSvg);
-    setIsValid(validation.isValid);
-    if (!validation.isValid) {
-      setErrorMessage(validation.error || "Invalid SVG");
-      setStats({ size: 0, elements: 0, hasScripts: false, hasStyles: false });
-      setMetadata({});
-    } else {
-      setErrorMessage("");
-      const result = formatSvg(inputSvg);
-      if (result.success && result.stats) {
-        setStats(result.stats);
-      }
-      setMetadata(extractSvgMetadata(inputSvg));
-    }
-  }, [inputSvg]);
 
   const handleFormat = () => {
     const result = formatSvg(inputSvg);

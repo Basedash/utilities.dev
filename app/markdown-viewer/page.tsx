@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useMemo, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -38,50 +38,38 @@ import {
   MarkdownStats,
 } from "./utils";
 
+const EMPTY_MARKDOWN_STATS: MarkdownStats = {
+  size: 0,
+  characters: 0,
+  charactersNoSpaces: 0,
+  words: 0,
+  lines: 0,
+  paragraphs: 0,
+  headers: 0,
+  links: 0,
+  images: 0,
+  codeBlocks: 0,
+  readingTimeMinutes: 0,
+};
+
 export default function MarkdownViewerPage() {
   const [inputMarkdown, setInputMarkdown] = useState("");
-  const [stats, setStats] = useState<MarkdownStats>({
-    size: 0,
-    characters: 0,
-    charactersNoSpaces: 0,
-    words: 0,
-    lines: 0,
-    paragraphs: 0,
-    headers: 0,
-    links: 0,
-    images: 0,
-    codeBlocks: 0,
-    readingTimeMinutes: 0,
-  });
-  const [metadata, setMetadata] = useState<Record<string, string>>({});
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // Auto-parse and update when input changes
-  useEffect(() => {
+  const { stats, metadata } = useMemo(() => {
     if (!inputMarkdown.trim()) {
-      setStats({
-        size: 0,
-        characters: 0,
-        charactersNoSpaces: 0,
-        words: 0,
-        lines: 0,
-        paragraphs: 0,
-        headers: 0,
-        links: 0,
-        images: 0,
-        codeBlocks: 0,
-        readingTimeMinutes: 0,
-      });
-      setMetadata({});
-      return;
+      return {
+        stats: EMPTY_MARKDOWN_STATS,
+        metadata: {} as Record<string, string>,
+      };
     }
 
     const result = parseMarkdown(inputMarkdown);
-    if (result.success && result.stats) {
-      setStats(result.stats);
-    }
-    setMetadata(extractMarkdownMetadata(inputMarkdown));
+    return {
+      stats:
+        result.success && result.stats ? result.stats : EMPTY_MARKDOWN_STATS,
+      metadata: extractMarkdownMetadata(inputMarkdown),
+    };
   }, [inputMarkdown]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFormat = () => {
     const result = formatMarkdown(inputMarkdown);

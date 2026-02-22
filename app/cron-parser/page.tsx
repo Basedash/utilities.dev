@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -30,43 +30,49 @@ import {
 
 export default function CronParserPage() {
   const [cronExpression, setCronExpression] = useState("0 9 * * 1-5");
-  const [parsedCron, setParsedCron] = useState<ParsedCron | null>(null);
-  const [cronDescription, setCronDescription] =
-    useState<CronDescription | null>(null);
-  const [isValid, setIsValid] = useState<boolean>(true);
-  const [errorMessage, setErrorMessage] = useState("");
-
-  useEffect(() => {
+  const cronResult = useMemo<{
+    parsedCron: ParsedCron | null;
+    cronDescription: CronDescription | null;
+    isValid: boolean;
+    errorMessage: string;
+  }>(() => {
     if (!cronExpression.trim()) {
-      setParsedCron(null);
-      setCronDescription(null);
-      setIsValid(true);
-      setErrorMessage("");
-      return;
+      return {
+        parsedCron: null,
+        cronDescription: null,
+        isValid: true,
+        errorMessage: "",
+      };
     }
 
     const isValidCron = validateCronExpression(cronExpression);
-    setIsValid(isValidCron);
-
-    if (isValidCron) {
-      const parseResult = parseCronExpression(cronExpression);
-      if (parseResult.success && parseResult.data) {
-        setParsedCron(parseResult.data);
-        const description = describeCronExpression(cronExpression);
-        setCronDescription(description);
-        setErrorMessage("");
-      } else {
-        setParsedCron(null);
-        setCronDescription(null);
-        setErrorMessage(parseResult.error || "Invalid cron expression");
-        setIsValid(false);
-      }
-    } else {
-      setParsedCron(null);
-      setCronDescription(null);
-      setErrorMessage("Invalid cron expression format");
+    if (!isValidCron) {
+      return {
+        parsedCron: null,
+        cronDescription: null,
+        isValid: false,
+        errorMessage: "Invalid cron expression format",
+      };
     }
+
+    const parseResult = parseCronExpression(cronExpression);
+    if (!parseResult.success || !parseResult.data) {
+      return {
+        parsedCron: null,
+        cronDescription: null,
+        isValid: false,
+        errorMessage: parseResult.error || "Invalid cron expression",
+      };
+    }
+
+    return {
+      parsedCron: parseResult.data,
+      cronDescription: describeCronExpression(cronExpression),
+      isValid: true,
+      errorMessage: "",
+    };
   }, [cronExpression]);
+  const { parsedCron, cronDescription, isValid, errorMessage } = cronResult;
 
   const handleCopy = async (text: string) => {
     try {

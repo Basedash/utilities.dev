@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -31,29 +31,27 @@ import {
 
 export default function JwtDecoderPage() {
   const [inputToken, setInputToken] = useState("");
-  const [decodedJWT, setDecodedJWT] = useState<DecodedJWT | null>(null);
-  const [isValid, setIsValid] = useState<boolean | null>(null);
-  const [errorMessage, setErrorMessage] = useState("");
-
-  useEffect(() => {
+  const tokenResult = useMemo<{
+    decodedJWT: DecodedJWT | null;
+    isValid: boolean | null;
+    errorMessage: string;
+  }>(() => {
     if (!inputToken.trim()) {
-      setDecodedJWT(null);
-      setIsValid(null);
-      setErrorMessage("");
-      return;
+      return { decodedJWT: null, isValid: null, errorMessage: "" };
     }
 
     const result = decodeJWT(inputToken);
     if (result.success && result.data) {
-      setDecodedJWT(result.data);
-      setIsValid(true);
-      setErrorMessage("");
-    } else {
-      setIsValid(false);
-      setDecodedJWT(null);
-      setErrorMessage(result.error || "Invalid JWT token");
+      return { decodedJWT: result.data, isValid: true, errorMessage: "" };
     }
+
+    return {
+      decodedJWT: null,
+      isValid: false,
+      errorMessage: result.error || "Invalid JWT token",
+    };
   }, [inputToken]);
+  const { decodedJWT, isValid, errorMessage } = tokenResult;
 
   const handleCopy = async (text: string) => {
     try {
@@ -71,9 +69,6 @@ export default function JwtDecoderPage() {
 
   const handleClear = () => {
     setInputToken("");
-    setDecodedJWT(null);
-    setIsValid(null);
-    setErrorMessage("");
   };
 
   return (
