@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/ui/header";
 import { Footer } from "@/components/ui/footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import { getSiteUrl } from "@/lib/utilities/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,6 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: "utilities.dev - Essential Developer Tools",
   description:
     "A collection of essential developer utilities including Base64 encoding, JSON formatting, regex testing, and more. Simple, fast, and free online tools.",
@@ -29,7 +31,9 @@ export const metadata: Metadata = {
     "free tools",
   ],
   authors: [{ name: "utilities.dev" }],
-  viewport: "width=device-width, initial-scale=1",
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/icon.svg",
     apple: "/icon.svg",

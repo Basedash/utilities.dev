@@ -1,10 +1,7 @@
-import type { Metadata } from "next";
+import { buildUtilityMetadata } from "@/lib/utilities/metadata";
+import manifest from "./manifest";
 
-export const metadata: Metadata = {
-  title: "Regex Tester & Validator | utilities.dev",
-  description:
-    "Free online regular expression tester and debugger. Test regex patterns, view matches, capture groups, and validate regular expressions with real-time feedback.",
-};
+export const metadata = buildUtilityMetadata(manifest);
 
 export default function RegexTesterLayout({
   children,

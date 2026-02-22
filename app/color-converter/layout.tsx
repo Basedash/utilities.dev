@@ -1,10 +1,7 @@
-import type { Metadata } from "next";
+import { buildUtilityMetadata } from "@/lib/utilities/metadata";
+import manifest from "./manifest";
 
-export const metadata: Metadata = {
-  title: "Color Converter & Picker | utilities.dev",
-  description:
-    "Free online color converter and picker. Convert colors between HEX, RGB, HSL, HSV, and other formats with live preview and copy functionality.",
-};
+export const metadata = buildUtilityMetadata(manifest);
 
 export default function ColorConverterLayout({
   children,

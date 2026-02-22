@@ -1,10 +1,7 @@
-import type { Metadata } from "next";
+import { buildUtilityMetadata } from "@/lib/utilities/metadata";
+import manifest from "./manifest";
 
-export const metadata: Metadata = {
-  title: "Text Diff Tool | utilities.dev",
-  description:
-    "Free online text diff tool to compare two text blocks and highlight differences. Perfect for code reviews, document comparisons, and spotting changes.",
-};
+export const metadata = buildUtilityMetadata(manifest);
 
 export default function DiffLayout({
   children,

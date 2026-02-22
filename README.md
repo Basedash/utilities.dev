@@ -53,6 +53,25 @@ pnpm build
 pnpm start
 ```
 
+### Utility Index Scripts
+
+```bash
+pnpm gen:utilities      # one-time index generation
+pnpm watch:utilities    # watch manifests and regenerate
+```
+
+## ➕ Adding a New Utility
+
+1. Create a route directory: `app/your-utility-slug/`
+2. Add these files:
+   - `page.tsx`
+   - `layout.tsx`
+   - `utils.ts`
+   - `utils.test.ts`
+   - `manifest.ts`
+3. Export the utility metadata from `manifest.ts` (title, description, tags, icon, etc.)
+4. `pnpm dev` picks it up automatically in homepage search + sitemap
+
 ## 🏗️ Tech Stack
 
 - **Framework**: Next.js 15 with App Router

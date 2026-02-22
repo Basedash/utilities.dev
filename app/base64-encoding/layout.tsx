@@ -1,10 +1,7 @@
-import type { Metadata } from "next";
+import { buildUtilityMetadata } from "@/lib/utilities/metadata";
+import manifest from "./manifest";
 
-export const metadata: Metadata = {
-  title: "Base64 Encoding & Decoding Tool | utilities.dev",
-  description:
-    "Free online tool to encode and decode text using Base64 encoding. Simple, fast, and secure with instant results.",
-};
+export const metadata = buildUtilityMetadata(manifest);
 
 export default function Base64EncodingLayout({
   children,

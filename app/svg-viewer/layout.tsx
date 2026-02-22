@@ -1,34 +1,7 @@
-import type { Metadata } from "next";
+import { buildUtilityMetadata } from "@/lib/utilities/metadata";
+import manifest from "./manifest";
 
-export const metadata: Metadata = {
-  title: "SVG Viewer - View, Format, and Analyze SVG Files | Utilities.dev",
-  description:
-    "View, format, minify, and analyze SVG files with real-time preview. Validate SVG syntax, extract metadata, and preview safely in your browser. Free online SVG viewer and editor tool.",
-  keywords: [
-    "SVG viewer",
-    "SVG editor",
-    "SVG formatter",
-    "SVG validator",
-    "SVG minifier",
-    "SVG sanitizer",
-    "vector graphics",
-    "XML viewer",
-    "SVG analyzer",
-    "scalable vector graphics",
-  ],
-  openGraph: {
-    title: "SVG Viewer - View, Format, and Analyze SVG Files",
-    description:
-      "View, format, minify, and analyze SVG files with real-time preview. Validate SVG syntax and extract metadata.",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "SVG Viewer - View, Format, and Analyze SVG Files",
-    description:
-      "View, format, minify, and analyze SVG files with real-time preview. Validate SVG syntax and extract metadata.",
-  },
-};
+export const metadata = buildUtilityMetadata(manifest);
 
 export default function SvgViewerLayout({
   children,

@@ -1,10 +1,7 @@
-import type { Metadata } from "next";
+import { buildUtilityMetadata } from "@/lib/utilities/metadata";
+import manifest from "./manifest";
 
-export const metadata: Metadata = {
-  title: "Unix Timestamp Converter | utilities.dev",
-  description:
-    "Free online tool to convert Unix timestamps to human-readable dates and vice versa. Support for milliseconds and various date formats.",
-};
+export const metadata = buildUtilityMetadata(manifest);
 
 export default function UnixTimestampLayout({
   children,

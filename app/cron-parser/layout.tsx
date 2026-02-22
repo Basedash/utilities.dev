@@ -1,10 +1,7 @@
-import type { Metadata } from "next";
+import { buildUtilityMetadata } from "@/lib/utilities/metadata";
+import manifest from "./manifest";
 
-export const metadata: Metadata = {
-  title: "Cron Expression Parser & Generator | utilities.dev",
-  description:
-    "Free online cron expression parser and generator. Parse cron expressions into human-readable descriptions and see upcoming execution times with detailed syntax help.",
-};
+export const metadata = buildUtilityMetadata(manifest);
 
 export default function CronParserLayout({
   children,

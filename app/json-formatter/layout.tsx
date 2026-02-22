@@ -1,10 +1,7 @@
-import type { Metadata } from "next";
+import { buildUtilityMetadata } from "@/lib/utilities/metadata";
+import manifest from "./manifest";
 
-export const metadata: Metadata = {
-  title: "JSON Formatter & Validator | utilities.dev",
-  description:
-    "Free online JSON formatter, prettifier, and validator. Format, minify, and validate JSON data with syntax highlighting and error detection.",
-};
+export const metadata = buildUtilityMetadata(manifest);
 
 export default function JsonFormatterLayout({
   children,
