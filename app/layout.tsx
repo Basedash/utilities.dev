@@ -4,7 +4,9 @@ import "./globals.css";
 import { Header } from "@/components/ui/header";
 import { Footer } from "@/components/ui/footer";
 import { ThemeProvider } from "@/components/theme-provider";
-import { getSiteUrl } from "@/lib/utilities/site";
+import { JsonLd } from "@/components/seo/json-ld";
+import { buildWebsiteJsonLd } from "@/lib/utilities/metadata";
+import { getOgImageUrl, getSiteUrl } from "@/lib/utilities/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +33,29 @@ export const metadata: Metadata = {
     "free tools",
   ],
   authors: [{ name: "utilities.dev" }],
+  openGraph: {
+    title: "utilities.dev - Essential Developer Tools",
+    description:
+      "A collection of essential developer utilities including Base64 encoding, JSON formatting, regex testing, and more. Simple, fast, and free online tools.",
+    siteName: "utilities.dev",
+    type: "website",
+    url: getSiteUrl(),
+    images: [
+      {
+        url: getOgImageUrl(),
+        width: 1200,
+        height: 630,
+        alt: "utilities.dev OG image",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "utilities.dev - Essential Developer Tools",
+    description:
+      "A collection of essential developer utilities including Base64 encoding, JSON formatting, regex testing, and more.",
+    images: [getOgImageUrl()],
+  },
   alternates: {
     canonical: "/",
   },
@@ -56,6 +81,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <JsonLd data={buildWebsiteJsonLd()} />
           <Header />
           {children}
           <Footer />

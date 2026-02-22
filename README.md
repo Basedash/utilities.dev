@@ -89,6 +89,19 @@ pnpm watch:utilities    # watch manifests and regenerate
 - **Accessibility**: Screen reader friendly with proper ARIA labels
 - **Performance**: Optimized for speed and lighthouse scores
 
+## 🔎 SEO Setup
+
+- Root and utility pages now use dynamic Open Graph and Twitter images.
+- OG image route: `/api/og` (root) and `/api/og?utility=<slug>` (utility-specific).
+- Structured data (JSON-LD) is added for the website and each utility page.
+- Sitemap and robots are generated from utility manifests.
+
+Set a production URL for correct canonical and OG links:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://utilities.dev
+```
+
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
